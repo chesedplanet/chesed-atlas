@@ -581,6 +581,10 @@ svg text{stroke-linejoin:round;stroke-linecap:round}
 .prefbtn{align-items:center!important;height:42px!important;min-width:52px!important;padding:0 10px!important;font-size:22px!important;line-height:1!important;gap:1px!important}
 .prefbtn small{font-size:14px!important;line-height:1;margin-top:5px}
 body:not(.gothic) .prefbtn{font-size:27px!important} body:not(.gothic) .prefbtn small{font-size:17px!important;margin-top:6px}
+.prefbtn{width:44px!important;min-width:44px!important;height:44px!important;padding:0!important;align-items:center!important;justify-content:center!important;border-radius:14px!important}
+.prefbtn svg{width:25px;height:25px;display:block}
+.prefbtn{border:0!important;background:none!important;box-shadow:none!important;width:44px!important;height:44px!important}
+.prefbtn svg{width:28px;height:28px}
 </style>
 </head>
 <body data-tab="books">
@@ -588,7 +592,7 @@ body:not(.gothic) .prefbtn{font-size:27px!important} body:not(.gothic) .prefbtn 
   <div class="brand">
     <h1><svg class="doodle" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 12c5-2 10-1 14 2 4-3 9-4 14-2v19c-5-2-10-1-14 2-4-3-9-4-14-2z" fill="var(--surface)" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/><path d="M20 14v19" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/><path d="M10 17c2-.6 4-.5 6 .3M10 21c2-.6 4-.5 6 .3M24 17.3c2-.8 4-.9 6-.3M24 21.3c2-.8 4-.9 6-.3" stroke="var(--sky-deep)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M33 3l1.2 3 3 1.2-3 1.2L33 11.4l-1.2-3-3-1.2 3-1.2z" fill="var(--gold)"/><circle cx="6" cy="5" r="1.6" fill="var(--sky)"/></svg><span class="ttl"><span class="ttl-en">Chesed Atlas</span><span class="ttl-sub">말씀의 우주를 항해하는 당신을 위한 지도</span></span></h1>
     <small id="stat"></small>
-    <button type="button" class="prefbtn" id="prefBtn" aria-label="글꼴과 글자 크기">가<small>가</small></button>
+    <button type="button" class="prefbtn" id="prefBtn" aria-label="보기 설정 (글꼴, 글자 크기, 화면 켜두기)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.1"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
   </div>
   <div class="search">
     <label for="q" class="sr" style="position:absolute;left:-9999px">인물 검색</label>
@@ -3313,14 +3317,33 @@ document.body.insertAdjacentHTML('beforeend',`<div id="prefSheet" class="vsheet"
   <div class="pf-seg"><button type="button" data-pf-font="hand" class="pf-hand">손글씨체</button><button type="button" data-pf-font="gothic" class="pf-gothic">고딕체</button></div>
   <div class="pf-lab">글자 크기</div>
   <div class="pf-seg four">${SIZES.map(([n],i)=>`<button type="button" data-pf-size="${i}" style="font-size:${[14,16,18,20][i]}px">${n}</button>`).join('')}</div>
-  <p class="vs-tip" style="margin-top:10px">이 기기에 저장되어 다음에 열 때도 그대로예요.</p></div></div>`);
+  <div class="pf-lab">화면 켜두기</div>
+  <div class="pf-seg"><button type="button" data-pf-wake="0">끄기</button><button type="button" data-pf-wake="1">켜두기</button></div>
+  <p class="pf-wmsg vs-tip" hidden></p>
+  <p class="vs-tip" style="margin-top:10px">이 기기에 저장되어 다음에 열 때도 그대로예요. 화면 켜두기는 이 페이지를 보고 있는 동안만 적용돼요.</p></div></div>`);
 document.addEventListener('click',e=>{
   if(e.target.closest('#prefBtn')){ document.getElementById('prefSheet').hidden=false; applyPrefs(false); return; }
   if(e.target.closest('.pf-close')){ document.getElementById('prefSheet').hidden=true; return; }
   const f=e.target.closest('[data-pf-font]'), z=e.target.closest('[data-pf-size]');
+  const wk=e.target.closest('[data-pf-wake]');
+  if(wk){ PREF.wake=wk.dataset.pfWake==='1'; try{ localStorage.setItem(PREF_KEY, JSON.stringify(PREF)); }catch(err){} wakeSync(true); return; }
   if(f||z){ if(f) PREF.font=f.dataset.pfFont; if(z) PREF.size=+z.dataset.pfSize; try{ localStorage.setItem(PREF_KEY, JSON.stringify(PREF)); }catch(err){} applyPrefs(true); }
 });
 applyPrefs(false);
+/* 화면 켜두기 (Wake Lock): 지원하는 브라우저(안드로이드 크롬, 최신 사파리)에서 이 페이지를 보는 동안 화면이 꺼지지 않게 */
+let WAKE=null;
+async function wakeSync(fromClick){
+  const msg=document.querySelector('.pf-wmsg');
+  document.querySelectorAll('[data-pf-wake]').forEach(b=>b.setAttribute('aria-pressed', (b.dataset.pfWake==='1')===!!PREF.wake));
+  if(!PREF.wake){ if(WAKE){ try{ await WAKE.release(); }catch(e){} WAKE=null; } if(msg) msg.hidden=true; return; }
+  if(!('wakeLock' in navigator)){ if(msg){ msg.textContent='이 브라우저에서는 화면 켜두기를 지원하지 않아요.'; msg.hidden=false; } return; }
+  if(document.visibilityState!=='visible' || WAKE) return;
+  try{ WAKE=await navigator.wakeLock.request('screen'); WAKE.addEventListener('release',()=>{ WAKE=null; }); if(msg&&fromClick){ msg.textContent='화면이 꺼지지 않도록 켜 두었어요.'; msg.hidden=false; } }
+  catch(e){ if(msg){ msg.textContent='여기서는 화면 켜두기를 쓸 수 없어요. Chesed Atlas 웹앱(브라우저)에서는 작동해요.'; msg.hidden=false; } }
+}
+document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible' && PREF.wake) wakeSync(false); });
+document.addEventListener('pointerdown',()=>{ if(PREF.wake && !WAKE) wakeSync(false); },{passive:true});
+wakeSync(false);
 renderBooks(); renderPerson(); renderGraph(); renderKings();
 renderQuick(); try{ history.replaceState(navState(),''); }catch(e){}
 if(location.hash==='#kings') setTab('kings');
