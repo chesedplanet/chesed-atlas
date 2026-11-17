@@ -2303,6 +2303,7 @@ function renderTimeline(){
   const EVENTS = KINGS.filter(k=>k.kind==='ev');
   for(let y=1050; y>=430; y-= (y<=931&&y>586)?25:50){
     if(EVENTS.some(ev=>Math.abs(Y(y)-Y(ev.start))<32)) continue;
+    if(fb.some(b=>b.tracks>=3 && Y(y)>b.y0-12 && Y(y)<b.y1+12)) continue; // 주변국 왕이 셋 이상 나란히 서는 곳은 연도 칸까지 넓혀 쓰므로 눈금 숫자를 비움
     html += `<div class="tl-tick" style="top:${Y(y)}px"><span style="left:${COLS.ax[0]}%;width:${showFo?7.5:COLS.ax[1]-COLS.ax[0]}%">${y}</span></div>`;
   }
   // 통일 왕국 표시
@@ -2314,7 +2315,7 @@ function renderTimeline(){
   });
   const FX0 = COLS.ax[0]+7.5, FW = COLS.ax[1]-FX0;
   fb.forEach(b=>{
-    const w=FW/b.tracks, left=FX0+w*b.track, f=b.f;
+    const X0 = b.tracks>=3 ? COLS.ax[0]+0.5 : FX0, w=(COLS.ax[1]-X0)/b.tracks, left=X0+w*b.track, f=b.f; // 셋 이상이면 왼쪽 연도 칸까지 넓혀 글자가 너무 작아지지 않게
     html += `<button class="tl-b fo" data-person="${esc(f.id)}" title="${esc(f.id)} (${f.nation}) · BC ${f.start===f.end?f.start:`${f.start}–${f.end}`}" data-nation="${f.nation}" data-yrs="${f.start===f.end?f.start:`${f.start}–${f.end}`}${f.start===703&&f.id==='므로닥발라단'?' (두 번째 통치, 9개월)':f.id==='고레스'?' (539 바벨론 정복)':''}" style="top:${b.y0}px;height:${b.y1-b.y0}px;left:calc(${left}% + 1px);width:calc(${w}% - 2px);--nc:${NATION[f.nation]}"><b class="fon" style="top:${b.nt}px;height:${b.nh}px">${esc(f.id).replace(/ ?(\d+)/g,'<span class="tcu">$1</span>')}</b></button>`;
   });
   blocks.forEach(b=>{
