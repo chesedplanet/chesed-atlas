@@ -373,6 +373,14 @@ header.top::after{content:"";position:absolute;left:0;right:0;bottom:0;height:9p
 .tl-b.fo{border:1.2px solid var(--nc)!important;background:var(--bg);box-shadow:none;border-radius:12px!important}
 .tl-b:hover,.tl-b:focus-visible{border-color:var(--accent)!important;border-top-color:var(--bc)!important}
 .tl-b.fo:hover,.tl-b.fo:focus-visible{border-width:2px!important}
+.tl-b small.tl-cot{display:none}
+#kings .tl-b.tl-open small.tl-cot{display:block!important;color:color-mix(in srgb,var(--bc) 70%,var(--ink))}
+.tl-coext{position:absolute;left:-1.4px;right:-1.4px;box-sizing:border-box;pointer-events:none;writing-mode:horizontal-tb;text-align:left;
+  border:1.4px solid color-mix(in srgb,var(--ink) 22%,transparent);border-bottom:0;border-top:4px solid var(--bc);border-radius:10px 13px 0 0/13px 9px 0 0;
+  background:color-mix(in srgb,color-mix(in srgb,var(--bc) 16%,var(--surface)) 80%,transparent);box-shadow:0 -4px 14px rgba(60,40,20,.12);
+  padding:0 5px;display:flex;align-items:center;justify-content:center;font-size:calc(12.5px * var(--fz,1));line-height:1;color:color-mix(in srgb,var(--bc) 70%,var(--ink));overflow:hidden}
+.tl-coext b{font-size:inherit!important;font-weight:700}
+#kings .tl-b.tl-open.tl-hasco{border-top:1.5px dashed color-mix(in srgb,var(--bc) 55%,transparent)!important;border-top-left-radius:0!important;border-top-right-radius:0!important}
 .tl-united{border:1.4px dashed color-mix(in srgb,var(--ink) 25%,transparent);border-radius:14px}
 /* 선지자 이름: 칸이 좁아도 잘리지 않게 (조금 넘쳐도 보이게) */
 .tl-b.pr{overflow:visible;justify-content:center;padding-left:0!important;padding-right:0!important;border-left-width:1px!important;border-right-width:1px!important}
@@ -2063,10 +2071,10 @@ i|1|엘라|886|885|2년|b|디르사에서 술에 취해 있다가 시므리에�
 i|1|시므리|885|885|7일|b|7일 만에 오므리에게 포위되자 왕궁에 불을 지르고 죽음|오므리
 i|2|오므리|885|874|12년|b|사마리아를 세워 수도로 삼음. 아합 왕조를 엶|아달랴
 i|2|아합|874|853|22년|b|이세벨과 함께 바알 숭배를 퍼뜨림. 길르앗 라못에서 화살에 맞아 죽음|이세벨,엘리야,오바댜(궁내대신),나봇,미가야,벤하닷 2세
-j|2|여호사밧|873|848|25년|g|레위인을 보내 율법을 가르치고 재판을 개혁. 아합과 혼인 동맹|미가야,엘리사,아합
+j|2|여호사밧|873/870|848|25년|g|레위인을 보내 율법을 가르치고 재판을 개혁. 아합과 혼인 동맹|미가야,엘리사,아합
 i|2|아하시야(이스라엘)|853|852|2년|b|다락에서 떨어져 바알세붑에게 물었다가 엘리야의 말대로 죽음|엘리야
 i|2|여호람(이스라엘)|852|841|12년|b|모압과 싸우고 아람의 침공을 받음. 예후의 화살에 죽음|엘리사,나아만,하사엘,예후
-j|2|여호람(유다)|848|841|8년|b|형제들을 죽이고 아합의 길을 따름. 에돔이 떨어져 나감|아달랴
+j|2|여호람(유다)|853/848|841|8년|b|형제들을 죽이고 아합의 길을 따름. 에돔이 떨어져 나감|아달랴
 j|2|아하시야(유다)|841|841|1년|b|외삼촌 요람을 문병하러 갔다가 예후에게 죽음|아달랴,예후
 i|3|예후|841|814|28년|m|아합 집안과 바알 숭배자를 진멸했으나 금송아지는 남겨 둠|엘리사,이세벨,하사엘
 j|3|아달랴|841|835|6년|b|왕족을 죽이고 왕위를 빼앗은 유다의 유일한 여왕. 여호야다에게 처형됨|여호야다
@@ -2074,19 +2082,19 @@ j|3|요아스(유다)|835|796|40년|m|여호야다가 살아 있는 동안 성�
 i|3|여호아하스(이스라엘)|814|798|17년|b|아람의 압제 속에 여호와께 간구하여 구원자를 얻음|하사엘
 i|3|요아스(이스라엘)|798|782|16년|b|엘리사의 임종을 지키고 아람을 세 번 이김. 유다 왕 아마샤를 사로잡음|엘리사,아마샤
 j|3|아마샤|796|767|29년|m|에돔을 이긴 뒤 에돔 신상을 섬기고 이스라엘에 싸움을 걸었다가 패함|요아스(이스라엘)
-i|3|여로보암 2세|793|753|41년|b|하맛 어귀부터 아라바 바다까지 국경을 회복. 번영 속 불의를 아모스가 고발|요나,아모스,호세아
-j|3|웃시야|792|740|52년|g|군사와 농업으로 크게 번성. 교만해져 성전에서 분향하다 나병에 걸림|이사야
+i|3|여로보암 2세|793/782|753|41년|b|하맛 어귀부터 아라바 바다까지 국경을 회복. 번영 속 불의를 아모스가 고발|요나,아모스,호세아
+j|3|웃시야|792/767|740|52년|g|군사와 농업으로 크게 번성. 교만해져 성전에서 분향하다 나병에 걸림|이사야
 i|4|스가랴(이스라엘 왕)|753|753|6개월|b|예후 왕조 4대로 끝. 6개월 만에 살룸에게 살해됨|살룸
 i|4|살룸|752|752|1개월|n|한 달 만에 므나헴에게 살해됨|므나헴
 i|4|므나헴|752|742|10년|b|살룸을 죽이고 즉위. 앗수르 왕 불에게 은 천 달란트를 바침|디글랏빌레셀
-j|4|요담|750|732|16년|g|성전 윗문을 건축하고 암몬을 이김. 산당은 남겨 둠|이사야,미가
+j|4|요담|750/740|732|16년|g|성전 윗문을 건축하고 암몬을 이김. 산당은 남겨 둠|이사야,미가
 i|4|브가히야|742|740|2년|b|즉위 2년 만에 장관 베가에게 살해됨|베가
 i|4|베가|740|732|20년|b|아람 왕 르신과 연합해 유다를 침공. 디글랏빌레셀에게 땅을 잃음|아하스,디글랏빌레셀,이사야
-j|4|아하스|735|715|16년|b|이사야의 권면을 거절하고 앗수르를 의지함. 다메섹 제단을 본떠 만듦|이사야,디글랏빌레셀,미가,호세아
+j|4|아하스|735/732|715|16년|b|이사야의 권면을 거절하고 앗수르를 의지함. 다메섹 제단을 본떠 만듦|이사야,디글랏빌레셀,미가,호세아
 i|4|호세아(이스라엘 왕)|732|722|9년|b|앗수르를 배반하고 애굽에 기댔다가 사마리아가 함락됨|살만에셀
 ev|4|i|722|사마리아 함락|북이스라엘 멸망. 백성이 앗수르로 끌려가고 이방인이 옮겨와 삶
-j|5|히스기야|715|686|29년|g|산당과 놋뱀을 없앤 개혁. 산헤립의 포위에서 구원받고 생명이 15년 연장됨|이사야,미가,산헤립,므로닥발라단
-j|5|므낫세(유다 왕)|697|642|55년|b|바알 제단과 무당을 세우고 무죄한 피를 흘림. 바벨론에 끌려가 회개(역대하)|
+j|5|히스기야|729/715|686|29년|g|산당과 놋뱀을 없앤 개혁. 산헤립의 포위에서 구원받고 생명이 15년 연장됨|이사야,미가,산헤립,므로닥발라단
+j|5|므낫세(유다 왕)|697/686|642|55년|b|바알 제단과 무당을 세우고 무죄한 피를 흘림. 바벨론에 끌려가 회개(역대하)|
 j|5|아몬|642|640|2년|b|아버지의 우상 숭배를 따르다 신하들에게 살해됨|
 j|5|요시야|640|609|31년|g|율법책 발견 후 전국적 개혁과 유월절. 므깃도에서 바로 느고에게 전사|힐기야,훌다,예레미야,스바냐,느고
 j|5|여호아하스(유다)|609|609|3개월|b|즉위 3개월 만에 바로 느고에게 폐위되어 애굽에서 죽음|느고,예레미야
@@ -2134,7 +2142,8 @@ const KINGS = KINGS_RAW.trim().split('\n').map(l=>{
   if(f[0]==='ev') return {kind:'ev', per:+f[1], lane:f[2], start:+f[3], title:f[4], desc:f[5]};
   if(f[0]==='pr') return {kind:'pr', per:+f[1], lane:f[2], id:f[3], start:+f[4], yrs:f[5], desc:f[6]};
   if(f[0]==='fg') return {kind:'fg', per:+f[1], lane:f[2], id:f[3], start:+f[4], yrs:f[5], role:f[6], desc:f[7]};
-  return {kind:'king', lane:f[0], per:+f[1], id:f[2], start:+f[3], end:+f[4], len:f[5], v:f[6], desc:f[7], rel:f[8]?f[8].split(','):[]};
+  const [c0,c1]=f[3].split('/');
+  return {kind:'king', lane:f[0], per:+f[1], id:f[2], start:+c0, sole:c1?+c1:null, end:+f[4], len:f[5], v:f[6], desc:f[7], rel:f[8]?f[8].split(','):[]};
 });
 (function numberKings(){ const c={i:0,j:0}; KINGS.forEach(k=>{ if(k.kind==='king' && (k.lane==='i'||k.lane==='j') && k.id!=='아달랴') k.no=++c[k.lane]; }); })();
 const VERD = {g:'정직',b:'악',m:'엇갈림',n:'평가 없음'};
@@ -2152,7 +2161,7 @@ function kingCard(k, full){
     <div class="kmeta"><span class="pill n">${esc(k.role)}</span><span>BC ${esc(k.yrs)}</span></div>
     <p>${esc(k.desc)}</p></div>`;
   const sub = sb ? ` <small style="font-size:calc(12px * var(--fz,1));font-weight:400;color:var(--muted)">${esc(sb)}</small>` : '';
-  const yrs = k.start===k.end ? `BC ${k.start}` : `BC ${k.start}–${k.end}`;
+  const yrs = (k.start===k.end ? `BC ${k.start}` : `BC ${k.sole||k.start}–${k.end}`) + (k.sole?` (공동통치 ${k.start}부터)`:'');
   const ord = k.lane==='u' ? '통일 왕국' : k.id==='아달랴' ? '찬탈' : `${k.lane==='i'?'북':'남'} ${k.no}대`;
   return `<div class="kcard ${k.v}${fc}">
     <button class="kname" data-person="${esc(k.id)}">${esc(nm)}${sub}</button>
@@ -2223,7 +2232,10 @@ function renderTimeline(){
       let y0=Math.max(Y(s), prevBottom+2);
       const y1=Math.max(y0+24*FZ, Y(e));
       prevBottom=y1;
-      blocks.push({k,col,y0,y1,track:0,tracks:1});
+      const bl={k,col,y0,y1,track:0,tracks:1};
+      const prev=blocks.length && blocks[blocks.length-1].col===col ? blocks[blocks.length-1] : null;
+      if(k.sole && prev && y0-Y(s)>6) bl.co={ext:y0-Y(s), with:prev.k.id}; // 공동 통치: 꾹 누르면 그 기간만큼 칸이 위로 반투명하게 늘어남
+      blocks.push(bl);
     });
   });
   // 선지자 열: 겹치면 칸을 나눔
@@ -2303,22 +2315,24 @@ function renderTimeline(){
     const left = b.col==='pR' ? r-w*(b.track+1) : l+w*b.track; const wid=w*(b.span||1); // 남쪽 선지자는 오른쪽(남유다 왕 쪽)부터 채움
     const k=b.k, h=b.y1-b.y0, [nm,nsb]=nameParts(k.id);
     const [s,e]=yearsOf(k);
-    const yr = s===e ? `${s}` : `${s}–${e}`;
+    const s1 = k.sole||s;
+    const yr = s1===e ? `${s1}` : `${s1}–${e}`;
     const cls = k.kind==='pr' ? 'pr' : k.kind==='fg' ? 'fg' : k.v;
+    const coTxt = k.sole ? `공동통치 BC ${s}–${k.sole}${b.co?` · ${nameParts(b.co.with)[0]}와 함께`:''}` : '';
     let label;
     if(k.kind==='pr'){
       label = `<b>${esc(nm)}</b>`;
     } else {
       const lines = Math.floor((h-48*FZ)/(17.3*FZ));
-      label = `<b>${esc(nm)}${nsb?`<i class="tl-sub">${esc(nsb)}</i>`:''}</b><small${h>=40*FZ?'':' style="display:none"'}>${yr}${k.len?' · '+esc(k.len):''}</small>${k.desc?`<span class="tl-d" style="${lines>=2?`-webkit-line-clamp:${lines}`:'display:none'}">${esc(k.desc)}</span>`:''}`; /* 짧은 칸도 내용은 넣어 두고 숨김 (꾹 누르면 펼쳐 보임) */
+      label = `<b>${esc(nm)}${nsb?`<i class="tl-sub">${esc(nsb)}</i>`:''}</b><small${h>=40*FZ?'':' style="display:none"'}>${yr}${k.len?' · '+esc(k.len):''}</small>${coTxt?`<small class="tl-cot">${esc(coTxt)}</small>`:''}${k.desc?`<span class="tl-d" style="${lines>=2?`-webkit-line-clamp:${lines}`:'display:none'}">${esc(k.desc)}</span>`:''}`; /* 짧은 칸도 내용은 넣어 두고 숨김 (꾹 누르면 펼쳐 보임) */
     }
-    html += `<button class="tl-b ${cls}" data-person="${esc(k.id)}" title="${esc(k.id)} · BC ${yr}"${k.kind==='pr'?` data-yrs="${esc(k.yrs)}" data-desc="${esc(k.desc)}"`:''} style="top:${b.y0}px;height:${h}px;left:calc(${left}% + 1px);width:calc(${wid}% - 2px)">${label}</button>`;
+    html += `<button class="tl-b ${cls}" data-person="${esc(k.id)}" title="${esc(k.id)} · BC ${yr}"${k.kind==='pr'?` data-yrs="${esc(k.yrs)}" data-desc="${esc(k.desc)}"`:''} style="top:${b.y0}px;height:${h}px;left:calc(${left}% + 1px);width:calc(${wid}% - 2px)"${b.co?` data-coext="${Math.round(b.co.ext)}" data-cot="BC ${s}–${k.sole}"`:''}>${label}</button>`;
   });
   const hd=(c,t,cls='')=>COLS[c]?`<span class="${cls}" style="left:${COLS[c][0]}%;width:${COLS[c][1]-COLS[c][0]}%">${t}</span>`:'';
   return `<div class="tl-head">${hd('kL','북이스라엘 왕')}${hd('pL','북<br>선지자','p')}${hd('ax',showFo?'연도(BC)<br>주변국 왕':'BC')}${hd('pR','남<br>선지자','p')}${hd('kR','남유다 왕')}</div>
     ${showFo?`<div class="legend tl-nat">${Object.entries(NATION).map(([n,c])=>`<span><span class="dot" style="background:${c}"></span>${n}</span>`).join('')}</div>`:''}
     <div class="tl" style="height:${H}px">${html}</div>
-    <p class="kfoot">세로 길이가 실제 기간에 비례합니다(분열 왕국 시기는 크게, 통일 왕국과 포로 이후는 작게 그렸습니다). 아주 짧은 재위는 이름이 보이도록 최소 높이를 주었고, 공동 통치 기간은 앞 왕이 끝난 뒤부터 그렸습니다. 가운데 열에는 이스라엘·유다와 얽힌 주변국 왕을 나라별 색으로 넣었습니다(같은 이름의 아람 왕 벤하닷은 1세·2세·3세로 구분). 포로 이후에는 오른쪽 열에 귀환 지도자를, 북 선지자 열에는 포로지의 다니엘과 에스겔을 두었습니다.</p>`;
+    <p class="kfoot">세로 길이가 실제 기간에 비례합니다(분열 왕국 시기는 크게, 통일 왕국과 포로 이후는 작게 그렸습니다). 아주 짧은 재위는 이름이 보이도록 최소 높이를 주었고, 칸은 혼자 다스리기 시작한 해부터 그렸고, 아버지와 함께 다스린 공동 통치 기간은 왕 칸을 꾹 누르면 위쪽으로 반투명하게 늘어나 보입니다(예: 히스기야는 왕하 18:1에 따라 BC 729년 아하스와 공동통치 시작, 715년 단독 즉위). 가운데 열에는 이스라엘·유다와 얽힌 주변국 왕을 나라별 색으로 넣었습니다(같은 이름의 아람 왕 벤하닷은 1세·2세·3세로 구분). 포로 이후에는 오른쪽 열에 귀환 지도자를, 북 선지자 열에는 포로지의 다니엘과 에스겔을 두었습니다.</p>`;
 }
 
 /* ===== 주변국 위치 지도 (개략도) ===== */
@@ -2769,7 +2783,7 @@ document.addEventListener('click',e=>{
 
 function tlFit(){ // 칸마다 남은 높이에 맞춰 설명 줄 수를 정해, 줄이 반쯤 잘려 보이지 않게
   const kv=document.getElementById('kings'); if(!kv || !kv.offsetParent) return; // 연대표가 화면에 없을 때는 나중에
-  document.querySelectorAll('#kings .tl-b:not(.pr):not(.fo)').forEach(b=>{ const sm=b.querySelector('small'); if(sm && b.clientHeight){ sm.style.display=''; if(sm.offsetTop+sm.offsetHeight>b.clientHeight-2) sm.style.display='none'; } });
+  document.querySelectorAll('#kings .tl-b:not(.pr):not(.fo)').forEach(b=>{ if(!b.clientHeight) return; b.querySelectorAll('small:not(.tl-cot)').forEach(sm=>{ sm.style.display=''; if(sm.offsetTop+sm.offsetHeight>b.clientHeight-2) sm.style.display='none'; }); });
   document.querySelectorAll('#kings .tl-b:not(.pr):not(.fo)').forEach(b=>{ const d=b.querySelector('.tl-d'); if(!d || !b.clientHeight) return;
     d.style.webkitLineClamp=''; d.style.display='-webkit-box';
     const lh=parseFloat(getComputedStyle(d).lineHeight)||16, room=b.clientHeight-d.offsetTop-4, n=Math.floor(room/lh);
@@ -3516,12 +3530,13 @@ const PROPHET_INFO = {
 };
 /* ===== 연대표 칸 꾹 누르면 펼쳐 보기: 잘린 내용까지 다 보이게, 바깥을 누르거나 − 로 원래대로 ===== */
 (()=>{ let t=null, fired=false, sx=0, sy=0;
-  const close=()=>{ document.querySelectorAll('#kings .tl-fobox').forEach(x=>x.remove()); document.querySelectorAll('#kings .tl-b.tl-open').forEach(b=>{ b.classList.remove('tl-open'); b.style.cssText=b.dataset.css||b.style.cssText; b.querySelector('.tl-x')?.remove(); }); requestAnimationFrame(()=>typeof tlFit==='function'&&tlFit()); };
+  const close=()=>{ document.querySelectorAll('#kings .tl-fobox').forEach(x=>x.remove()); document.querySelectorAll('#kings .tl-b.tl-open').forEach(b=>{ b.classList.remove('tl-open'); b.style.cssText=b.dataset.css||b.style.cssText; b.querySelector('.tl-x')?.remove(); b.querySelector('.tl-coext')?.remove(); b.classList.remove('tl-hasco'); }); requestAnimationFrame(()=>typeof tlFit==='function'&&tlFit()); };
   const open=b=>{ close(); b.dataset.css=b.style.cssText;
     const r=b.getBoundingClientRect(), pr=b.offsetParent.getBoundingClientRect(), w=Math.min(pr.width*0.8, 300), right = r.left+r.width/2 > pr.left+pr.width/2;
     b.classList.add('tl-open');
     b.style.width=w+'px'; b.style.left = right ? (r.right-pr.left-w)+'px' : (r.left-pr.left)+'px'; b.style.height='auto'; b.style.minHeight=r.height+'px';
     b.querySelectorAll('.tl-d,small').forEach(x=>{ x.style.display=''; x.style.webkitLineClamp=''; x.style.maxHeight=''; });
+    if(b.dataset.coext){ const ex=+b.dataset.coext; b.classList.add('tl-hasco'); b.insertAdjacentHTML('beforeend',`<span class="tl-coext" style="top:${-ex-1.5}px;height:${ex}px">${ex>=16*FZ?'<b>공동통치</b>':''}</span>`); }
     b.insertAdjacentHTML('beforeend','<span class="tl-x" role="button" aria-label="접기">−</span>');
     if(navigator.vibrate) try{ navigator.vibrate(15); }catch(e){}
   };
@@ -3561,7 +3576,7 @@ if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostn
   const hadCtrl=!!navigator.serviceWorker.controller; let shown=false;
   const showUpd=()=>{ if(shown) return; shown=true;
     const w=document.createElement('div'); w.id='updBox';
-    w.innerHTML='<div class="ub-card" role="dialog" aria-live="polite"><div class="ub-t">✦ 새 버전이 나왔어요</div><div class="ub-d">더 좋아진 Chesed Atlas를 보려면<br>앱을 다시 불러와 주세요.</div><div class="ub-btns"><button type="button" class="ub-later">나중에</button><button type="button" class="ub-go">지금 업데이트</button></div></div>';
+    w.innerHTML='<div class="ub-card" role="dialog" aria-live="polite"><div class="ub-t">새 버전이 나왔어요</div><div class="ub-d">더 좋아진 Chesed Atlas를 보려면<br>앱을 다시 불러와 주세요.</div><div class="ub-btns"><button type="button" class="ub-later">나중에</button><button type="button" class="ub-go">지금 업데이트</button></div></div>';
     document.body.appendChild(w);
     w.querySelector('.ub-go').onclick=()=>location.reload();
     w.querySelector('.ub-later').onclick=()=>w.remove();
