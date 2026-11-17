@@ -3556,7 +3556,33 @@ if(location.hash==='#kings') setTab('kings');
 </script>
 <script>
 /* 웹앱: 오프라인 지원 등록 */
-if('serviceWorker' in navigator && location.protocol==='https:'){ window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{})); }
+if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost')){
+  /* 새 버전 알림: 앱을 열어둔 채로 다시 들어왔을 때 새 버전이 올라와 있으면 안내 창을 띄움 */
+  const hadCtrl=!!navigator.serviceWorker.controller; let shown=false;
+  const showUpd=()=>{ if(shown) return; shown=true;
+    const w=document.createElement('div'); w.id='updBox';
+    w.innerHTML='<div class="ub-card" role="dialog" aria-live="polite"><div class="ub-t">✦ 새 버전이 나왔어요</div><div class="ub-d">더 좋아진 Chesed Atlas를 보려면<br>앱을 다시 불러와 주세요.</div><div class="ub-btns"><button type="button" class="ub-later">나중에</button><button type="button" class="ub-go">지금 업데이트</button></div></div>';
+    document.body.appendChild(w);
+    w.querySelector('.ub-go').onclick=()=>location.reload();
+    w.querySelector('.ub-later').onclick=()=>w.remove();
+  };
+  const st=document.createElement('style');
+  st.textContent='#updBox{position:fixed;inset:0;z-index:9999;background:rgba(40,30,20,.35);display:flex;align-items:center;justify-content:center;padding:24px}'+
+   '#updBox .ub-card{background:var(--surface,#fffaf0);color:var(--ink,#3b2f25);border:1.6px solid color-mix(in srgb,var(--ink,#3b2f25) 30%,transparent);border-radius:18px;padding:20px 20px 16px;max-width:320px;width:100%;box-shadow:2px 3px 0 rgba(0,0,0,.12);text-align:center}'+
+   '#updBox .ub-t{font-size:calc(19px * var(--fz,1));font-weight:700;margin-bottom:8px}'+
+   '#updBox .ub-d{font-size:calc(15px * var(--fz,1));line-height:1.5;color:var(--muted,#7a6a5a);margin-bottom:16px}'+
+   '#updBox .ub-btns{display:flex;gap:10px}#updBox button{flex:1;font:inherit;font-size:calc(15px * var(--fz,1));padding:10px 0;border-radius:999px;cursor:pointer}'+
+   '#updBox .ub-later{background:transparent;border:1.4px solid color-mix(in srgb,var(--ink,#3b2f25) 30%,transparent);color:inherit}'+
+   '#updBox .ub-go{background:var(--accent,#a8423f);border:0;color:#fff;font-weight:700}';
+  document.head.appendChild(st);
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{ if(hadCtrl) showUpd(); });
+  window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(reg=>{
+    const chk=()=>reg.update().catch(()=>{});
+    document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible') chk(); });
+    window.addEventListener('focus',chk);
+    setInterval(chk,30*60*1000);
+  }).catch(()=>{}));
+}
 </script>
 </body>
 </html>
