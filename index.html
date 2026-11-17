@@ -225,7 +225,8 @@ main>section,.panel{min-width:0}
 .tl-b.fg{border-left-color:var(--c-o)}
 .tl-b.pr{border:0;border-radius:6px;background:color-mix(in srgb, var(--c-p) 22%, var(--surface));border-top:3px solid var(--c-p);padding:3px 0;align-items:center;writing-mode:vertical-rl}
 .tl-b.fo{border:1.5px solid var(--nc);border-radius:6px;background:var(--bg);border-top:5px solid var(--nc);padding:3px 0;align-items:center;writing-mode:vertical-rl}
-.tl-b.fo .fon{position:absolute;left:0;right:0;display:flex;align-items:center;justify-content:center}
+.tl-b.fo .fon{position:absolute;left:0;right:0;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+.tl-b.pr > b{white-space:nowrap}
 .tl-b.fo b{font-size:calc(10.5px * var(--fz,1));color:var(--ink);letter-spacing:-.5px}
 .tl-nat{margin:8px 0 0}
 .tl-b.pr b{font-size:calc(10.5px * var(--fz,1));color:var(--ink);letter-spacing:-.5px}
@@ -2789,6 +2790,14 @@ document.addEventListener('click',e=>{
 
 function tlFit(){ // 칸마다 남은 높이에 맞춰 설명 줄 수를 정해, 줄이 반쯤 잘려 보이지 않게
   const kv=document.getElementById('kings'); if(!kv || !kv.offsetParent) return; // 연대표가 화면에 없을 때는 나중에
+  // 세로 이름(주변국 왕·선지자)이 칸보다 길거나 넓으면 두 줄로 꺾이거나 잘리지 않게 글자를 줄여 맞춤 (기기마다 글꼴 폭이 달라서)
+  document.querySelectorAll('#kings .tl-b.fo .fon, #kings .tl-b.pr > b').forEach(n=>{ n.style.fontSize='';
+    const box=n.classList.contains('fon')?n:n.parentElement, cs=getComputedStyle(box);
+    const room=()=>[box.clientHeight-(box===n?0:parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom)), box.getBoundingClientRect().width+1];
+    let fs=parseFloat(getComputedStyle(n).fontSize), i=0;
+    const rg=document.createRange(); rg.selectNodeContents(n);
+    while(i++<14 && fs>7){ const [h,w]=room(), r=rg.getBoundingClientRect(); if(r.height<=h+0.5 && r.width<=w+0.5) break; fs*=0.92; n.style.fontSize=fs+'px'; }
+  });
   document.querySelectorAll('#kings .tl-b:not(.pr):not(.fo)').forEach(b=>{ if(!b.clientHeight) return; b.querySelectorAll('small:not(.tl-cot)').forEach(sm=>{ sm.style.display=''; if(sm.offsetTop+sm.offsetHeight>b.clientHeight-2) sm.style.display='none'; }); });
   document.querySelectorAll('#kings .tl-b:not(.pr):not(.fo)').forEach(b=>{ const d=b.querySelector('.tl-d'); if(!d || !b.clientHeight) return;
     d.style.webkitLineClamp=''; d.style.display='-webkit-box';
