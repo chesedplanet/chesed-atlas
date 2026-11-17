@@ -588,6 +588,57 @@ body:not(.gothic) .prefbtn{font-size:27px!important} body:not(.gothic) .prefbtn 
 /* 본문 칸 높이를 고정해 막대를 끄는 동안 칸이 늘었다 줄었다 하지 않게 (자동 스크롤 경계가 흔들리지 않음) */
 .scrub-info{height:30vh;max-height:30vh}
 @media (min-width:960px){ .scrub-info{height:42vh;max-height:42vh} }
+/* 즐겨찾기·최근 본 인물: 접기, 편집 */
+.qblock{display:grid;gap:4px}
+.qhd{display:flex;align-items:center;gap:6px}
+button.qlab{border:0;background:none;padding:0;color:var(--sky-deep);font-size:calc(13.5px * var(--fz,1));display:inline-flex;align-items:center;gap:4px}
+.qn{color:var(--muted);font-size:calc(12px * var(--fz,1))}
+.qarr{font-size:calc(11px * var(--fz,1));color:var(--muted)}
+.qact{border:1.2px solid var(--line);background:var(--surface);border-radius:999px;padding:1px 9px;font-size:calc(12px * var(--fz,1));color:var(--muted)}
+.qhd .qact:first-of-type{margin-left:auto}
+.qact.done{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.qwrap{position:relative;flex:none;display:inline-flex;padding-top:6px;padding-right:6px}
+.qrow{padding-top:0}
+.qdel{position:absolute;top:0;right:0;width:22px;height:22px;border-radius:50%;border:2px solid var(--surface);background:var(--neg);color:#fff;font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0 0 2px;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.qblock.editing .qchip{animation:qwig .28s ease-in-out infinite alternate}
+.qblock.editing .qwrap:nth-child(2n) .qchip{animation-delay:.14s}
+@keyframes qwig{from{transform:rotate(-1.4deg)}to{transform:rotate(1.4deg)}}
+@media (prefers-reduced-motion: reduce){ .qblock.editing .qchip{animation:none} }
+.qtip{margin:0;font-size:calc(12px * var(--fz,1));color:var(--muted)}
+.qchip{-webkit-touch-callout:none;user-select:none;-webkit-user-select:none}
+.qask{margin-left:auto;font-size:calc(12.5px * var(--fz,1));color:var(--neg)}
+.qask+.qact{margin-left:0!important}
+.qact.warn{background:var(--neg);border-color:var(--neg);color:#fff}
+/* 큰 글자에서 연대표가 잘리지 않게 */
+.tl-ev span{width:auto!important;min-width:20%;left:50%!important;transform:translateX(-50%);height:auto!important;top:auto!important;bottom:0;translate:0 50%;padding:3px 8px;white-space:nowrap}
+.tl-b small{display:block;word-break:keep-all}
+.tl-b b{display:block;word-break:keep-all;overflow-wrap:anywhere}
+.tl-sub{display:inline-block;white-space:nowrap}
+.tl-b.pr b,.tl-b.fo b{white-space:normal;overflow:visible}
+.tl-d{overflow:hidden}
+.gwrap.wide{overflow-x:auto;overscroll-behavior-x:contain}
+.gwrap.wide svg{touch-action:pan-x pan-y;max-width:none}
+.gz-big{display:inline-flex!important;align-items:center;gap:4px;width:auto!important;padding:0 10px!important;font-size:calc(13.5px * var(--fz,1))!important;white-space:nowrap}
+.gz-big svg{flex:none}
+.mz-body svg .gnode{cursor:inherit}
+/* 연대표 칸 펼쳐 보기 */
+#kings .tl-b{-webkit-touch-callout:none;user-select:none;-webkit-user-select:none}
+#kings .tl-b.tl-open{z-index:30!important;overflow:visible;box-shadow:0 8px 24px rgba(60,40,20,.28)!important;padding-bottom:10px}
+#kings .tl-b.tl-open .tl-d{display:block!important;-webkit-line-clamp:unset!important;max-height:none!important;overflow:visible}
+#kings .tl-b.tl-open b,#kings .tl-b.tl-open small{display:block!important}
+.tl-x{position:absolute;top:-10px;right:-8px;width:26px;height:26px;border-radius:50%;background:var(--neg);color:#fff;border:2px solid var(--surface);display:flex;align-items:center;justify-content:center;font-size:19px;line-height:1;padding-bottom:2px;box-shadow:0 1px 4px rgba(0,0,0,.25);cursor:pointer}
+.tl-fobox{position:absolute;display:block!important;writing-mode:horizontal-tb!important;background:var(--surface)!important;border:1.8px dashed var(--nc)!important;border-radius:14px!important;padding:8px 12px 10px!important;text-align:left;height:auto!important}
+.tl-fobox b{font-size:calc(16px * var(--fz,1))!important;color:var(--ink)!important;letter-spacing:0!important}
+.tl-fobox small{color:var(--muted)}
+.tl-fobox .tl-d{margin-top:4px}
+.tl-nat{display:block;margin-top:8px;padding-top:6px;border-top:1px dashed var(--line);font-size:calc(13px * var(--fz,1));line-height:1.45;color:var(--ink)}
+.tl-nat em{font-style:normal;color:var(--nc);font-weight:700;margin-right:4px}
+.tl-b.fo:hover,.tl-b.fo:focus,.tl-b.fo:focus-visible,.tl-b.fo:active{border-color:var(--nc)!important;border-top-color:var(--nc)!important}
+.tl-b:not(.fo):not(.tl-fobox):hover,.tl-b:not(.fo):not(.tl-fobox):focus,.tl-b:not(.fo):not(.tl-fobox):focus-visible,.tl-b:not(.fo):not(.tl-fobox):active,.tl-b.tl-open:not(.tl-fobox){border-color:color-mix(in srgb,var(--ink) 22%,transparent)!important;border-top-color:var(--bc)!important}
+.tl-prbox{--bc:var(--c-p);border-style:solid!important;border-color:var(--c-p)!important;border-top:5px solid var(--c-p)!important}
+.tl-prbox .tl-nat em{display:block;margin-bottom:1px;color:var(--c-p)}
+.tl-b.pr:hover,.tl-b.pr:focus,.tl-b.pr:active{border-top-color:var(--c-p)!important}
+.deeds.prophecy li::before{content:"✦";background:color-mix(in srgb,var(--c-p) 15%,var(--surface));border-color:color-mix(in srgb,var(--c-p) 40%,transparent);color:var(--c-p)}
 </style>
 </head>
 <body data-tab="books">
@@ -631,7 +682,7 @@ body:not(.gothic) .prefbtn{font-size:27px!important} body:not(.gothic) .prefbtn 
       <div class="gmode" id="gmode"><button data-gm="val" aria-pressed="true">호불호로 보기</button><button data-gm="kind" aria-pressed="false">관계 종류로 보기</button></div>
       <div class="gfilter" id="gfilter" aria-label="관계 분류 골라보기"></div>
       <div class="legend" id="legend"></div>
-      <div class="gzoom"><button data-gz="-1" aria-label="축소">−</button><button data-gz="1" aria-label="확대">+</button><button data-gz="0">원래대로</button></div><div class="gwrap" id="gwrap"><svg id="graph" role="img" aria-label="인물 관계도"></svg></div>
+      <div class="gzoom"><button data-gz="-1" aria-label="축소">−</button><button data-gz="1" aria-label="확대">+</button><button data-gz="0">원래대로</button><button class="gz-big" type="button" aria-label="관계도 크게 보기"><svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true"><path d="M3 8V3h5M17 8V3h-5M3 12v5h5M17 12v5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>크게 보기</button></div><div class="gwrap" id="gwrap"><svg id="graph" role="img" aria-label="인물 관계도"></svg></div>
       <p class="ghint">주변 인물을 누르면 그 인물을 중심으로 관계도가 다시 그려집니다. 두 손가락으로 벌리거나 오므려 확대·축소하고, 확대한 뒤에는 한 손가락으로 끌어 옮길 수 있습니다. 두 번 톡 치면 원래 크기로 돌아옵니다.</p>
     </div>
   </section>
@@ -682,7 +733,7 @@ const PEOPLE_RAW = `
 라반|m|창|리브가의 오라비. 야곱의 외삼촌이자 장인.
 에서|m|창 신 수 렘 옵 말 롬 히|이삭의 맏아들. 팥죽 한 그릇에 장자권을 팔았다. 에돔의 조상.
 야곱|m|창 출 신 수 시 사 호 말 마 눅 요 행 롬 히|이삭의 아들. 이름이 이스라엘로 바뀌었고 열두 지파의 아버지가 되었다.
-레아|f|창 룻|라반의 맏딸, 야곱의 첫 아내. 레위와 유다의 어머니.
+레아|f|창 룻|라반의 맏딸, 야곱의 첫 아내. 레위와 유다(야곱의 아들)의 어머니.
 라헬|f|창 룻 렘 마|라반의 작은딸, 야곱이 사랑한 아내. 요셉과 베냐민의 어머니.
 르우벤|m|창 민 신 대상|야곱의 맏아들. 요셉을 구덩이에서 살리려 했다.
 레위|m|창 출 민 대상|야곱의 셋째 아들. 제사장 지파 레위의 조상.
@@ -787,9 +838,9 @@ const PEOPLE_RAW = `
 말라기|m|말|구약 마지막 선지자. 엘리야를 보내리라 예언했다.
 예수|m|마 막 눅 요 행 롬 고전 고후 갈 엡 빌 골 살전 살후 딤전 딤후 딛 몬 히 약 벧전 벧후 요일 요이 유 계|하나님의 아들, 그리스도. 십자가에서 죽고 부활하셨다.
 마리아|f|마 막 눅 요 행|예수의 어머니. 성령으로 잉태했다.
-요셉(나사렛)|m|마 눅 요|나사렛의 목수, 마리아의 남편. 예수의 법적 아버지.
+요셉(나사렛)|m|마 눅 요|나사렛의 목수, 마리아(예수의 어머니)의 남편. 예수의 법적 아버지.
 사가랴|m|눅|제사장. 늙어서 세례 요한을 얻었다.
-엘리사벳|f|눅|사가랴의 아내, 세례 요한의 어머니. 마리아의 친족.
+엘리사벳|f|눅|사가랴의 아내, 세례 요한의 어머니. 마리아(예수의 어머니)의 친족.
 세례 요한|m|마 막 눅 요 행|예수의 길을 예비한 선지자. 요단강에서 세례를 베풀었다.
 시므온|m|눅|예루살렘의 의인. 성전에서 아기 예수를 안고 찬양했다.
 안나|f|눅|아셀 지파 여선지자. 성전에서 아기 예수를 보고 감사했다.
@@ -819,7 +870,7 @@ const PEOPLE_RAW = `
 헤롯 대왕|m|마 눅|유대 왕. 아기 예수를 죽이려 베들레헴의 아이들을 학살했다.
 헤롯 안디바|m|마 막 눅 행|갈릴리 분봉왕, 헤롯 대왕의 아들. 세례 요한을 처형했다.
 헤로디아|f|마 막 눅|헤롯 안디바의 아내. 세례 요한의 목을 요구했다.
-헤롯 아그립바 1세|m|행|헤롯 대왕의 손자. 야고보를 죽이고 베드로를 가두었다.
+헤롯 아그립바 1세|m|행|헤롯 대왕의 손자. 야고보(세베대의 아들)를 죽이고 베드로를 가두었다.
 아그립바 2세|m|행|아그립바 1세의 아들. 가이사랴에서 바울의 변론을 들었다.
 벨릭스|m|행|유대 총독. 바울을 2년간 가두어 두었다.
 베스도|m|행|벨릭스의 후임 총독. 바울의 가이사 상소를 받아들였다.
@@ -852,7 +903,7 @@ const PEOPLE_RAW = `
 가이오|m|요삼|요한삼서의 수신자. 나그네를 대접한 사랑받는 자.
 디오드레베|m|요삼|으뜸 되기를 좋아하여 장로를 맞아들이지 않은 사람.
 나답(이스라엘 왕)|m|왕상|여로보암의 아들, 북이스라엘 2대 왕. 바아사에게 살해되었다.
-바아사|m|왕상 대하 렘|북이스라엘 3대 왕. 나답을 죽이고 여로보암 집안을 진멸했다.
+바아사|m|왕상 대하 렘|북이스라엘 3대 왕. 나답(이스라엘 왕)을 죽이고 여로보암 집안을 진멸했다.
 엘라|m|왕상|바아사의 아들. 술에 취해 있다가 시므리에게 살해되었다.
 시므리|m|왕상 왕하|병거 지휘관. 엘라를 죽이고 7일간 왕이었다가 왕궁에 불을 지르고 죽었다.
 오므리|m|왕상 왕하 대하 미|군대장관 출신 왕. 사마리아를 세워 수도로 삼았다.
@@ -895,8 +946,8 @@ const PEOPLE_RAW = `
 미가야|m|왕상 대하|이믈라의 아들 선지자. 아합의 패전을 홀로 예언했다.
 하나니|m|왕상 대하|선견자. 아람을 의지한 아사를 책망하다 옥에 갇혔다.
 게하시|m|왕하|엘리사의 사환. 나아만에게 몰래 재물을 받아 나병에 걸렸다.
-여호야다|m|왕하 대하|대제사장. 아기 요아스를 숨기고 아달랴를 몰아냈다.
-스가랴(제사장)|m|대하|여호야다의 아들. 요아스의 명령으로 성전 뜰에서 돌에 맞아 죽었다.
+여호야다|m|왕하 대하|대제사장. 아기 요아스(유다 왕)를 숨기고 아달랴를 몰아냈다.
+스가랴(제사장)|m|대하|여호야다의 아들. 요아스(유다 왕)의 명령으로 성전 뜰에서 돌에 맞아 죽었다.
 디글랏빌레셀|m|왕하 대상 대하|앗수르 왕, 일명 불. 므나헴의 조공을 받고 아하스의 요청으로 아람을 쳤다.
 살만에셀|m|왕하|앗수르 왕. 사마리아를 포위해 북이스라엘을 무너뜨렸다.
 산헤립|m|왕하 대하 사|앗수르 왕. 예루살렘을 포위했으나 하룻밤에 군사 18만 5천을 잃었다.
@@ -1513,7 +1564,7 @@ const DEEDS_RAW = `
 이드로|모세를 사위로 맞아 딸 십보라를 줌 (출 2:21)|출애굽 후 모세를 찾아와 여호와를 찬양함 (출 18:9-12)|천부장·백부장을 세워 재판을 나누라고 조언함 (출 18:13-26)
 십보라|모세의 아내가 되어 게르솜을 낳음 (출 2:21-22)|아들에게 할례를 행해 모세를 위험에서 건짐 (출 4:24-26)
 나답|모세와 함께 시내 산에 올라 하나님을 봄 (출 24:9-10)|여호와께서 명하지 않은 다른 불을 드리다 죽음 (레 10:1-2)
-아비후|시내 산에 올라 하나님을 봄 (출 24:9-10)|형 나답과 함께 다른 불을 드리다 죽음 (레 10:1-2)
+아비후|시내 산에 올라 하나님을 봄 (출 24:9-10)|형 나답(아론의 아들)과 함께 다른 불을 드리다 죽음 (레 10:1-2)
 비느하스|바알브올 사건 때 창으로 범죄자를 찔러 염병을 그치게 함 (민 25:7-8)|평화의 언약과 영원한 제사장 직분을 받음 (민 25:12-13)|요단 동편 지파의 제단 문제를 조사함 (수 22장)
 여호수아|르비딤에서 아말렉과 싸움 (출 17:9-13)|모세를 수종하며 회막을 떠나지 않음 (출 33:11)|정탐 후 갈렙과 함께 믿음의 보고를 함 (민 14:6-9)|요단을 건너 여리고를 무너뜨림 (수 3-6장)|기브온에서 해와 달이 멈춤 (수 10:12-14)|땅을 지파별로 나눠 줌 (수 13-21장)|"나와 내 집은 여호와를 섬기겠노라" (수 24:15)
 갈렙|열두 정탐꾼 중 "능히 이기리라" 보고함 (민 13:30)|여호수아와 함께 가나안에 들어갈 약속을 받음 (민 14:24)|85세에 헤브론 산지를 달라고 하여 차지함 (수 14:6-15)|기럇 세벨을 치는 자에게 딸 악사를 줌 (수 15:16-17)
@@ -1571,7 +1622,7 @@ const DEEDS_RAW = `
 벨사살|예루살렘 성전의 그릇으로 잔치를 벌임 (단 5:1-4)|벽에 나타난 손가락 글씨 "메네 메네 데겔 우바르신"을 봄 (단 5:5, 25)|다니엘을 셋째 통치자로 삼았으나 그 밤에 죽음 (단 5:29-30)
 다리오|62세에 나라를 얻음 (단 5:31)|다니엘을 세 총리 중 하나로 세움 (단 6:2)|신하들의 꾀에 넘어가 다니엘을 사자 굴에 넣었다가 구원받는 것을 보고 하나님을 높임 (단 6장)
 고레스|바사 왕으로 유다 사람의 귀환과 성전 재건을 명령함 (대하 36:22-23; 스 1:1-4)|성전 그릇을 돌려줌 (스 1:7-11)|이사야가 그 이름을 들어 "기름 부음 받은 자"라 부름 (사 44:28; 45:1)
-스룹바벨|1차 귀환 공동체를 이끌고 돌아옴 (스 2:2)|제단을 쌓고 성전 기초를 놓음 (스 3장)|반대에 부딪혀 중단되었다가 학개·스가랴의 격려로 다시 지음 (스 4-6장; 학 1장)|"힘으로 되지 아니하며 능력으로 되지 아니하고 오직 나의 영으로" (슥 4:6)|예수의 족보에 오름 (마 1:12)
+스룹바벨|1차 귀환 공동체를 이끌고 돌아옴 (스 2:2)|제단을 쌓고 성전 기초를 놓음 (스 3장)|반대에 부딪혀 중단되었다가 학개·스가랴(선지자)의 격려로 다시 지음 (스 4-6장; 학 1장)|"힘으로 되지 아니하며 능력으로 되지 아니하고 오직 나의 영으로" (슥 4:6)|예수의 족보에 오름 (마 1:12)
 에스라|율법에 익숙한 학자로 아닥사스다 왕의 허락을 받아 귀환함 (스 7장)|이방 여인과의 혼인 문제로 금식하며 회개를 이끔 (스 9-10장)|수문 앞 광장에서 율법책을 읽고 풀어 줌 (느 8장)
 느헤미야|예루살렘 소식을 듣고 울며 금식 기도함 (느 1장)|아닥사스다 왕의 허락을 받아 총독으로 귀환함 (느 2장)|반대를 이기며 52일 만에 성벽을 재건함 (느 3-6장)|가난한 자의 빚을 탕감하게 함 (느 5장)|안식일과 혼인 문제를 개혁함 (느 13장)
 아하수에로|127도를 다스린 바사 왕 (에 1:1)|명령을 거절한 왕후 와스디를 폐함 (에 1장)|에스더를 왕후로 삼음 (에 2:17)|잠 못 이루던 밤에 모르드개의 공을 알게 됨 (에 6장)|하만을 매달고 유다인이 스스로 지킬 조서를 내림 (에 7-8장)
@@ -1579,7 +1630,7 @@ const DEEDS_RAW = `
 모르드개|왕을 죽이려는 음모를 알려 왕의 목숨을 구함 (에 2:21-23)|하만에게 절하지 않음 (에 3:2)|에스더에게 "이때를 위함이 아닌지 누가 알겠느냐" 함 (에 4:14)|왕의 옷을 입고 말을 타는 영예를 얻고 총리가 됨 (에 6장; 10장)
 하만|아각 사람으로 총리가 됨 (에 3:1)|모르드개가 절하지 않자 유다인 전체를 멸하려고 부르(제비)를 뽑음 (에 3:5-7)|모르드개를 달려고 장대를 세움 (에 5:14)|에스더의 잔치에서 정체가 드러나 그 장대에 달림 (에 7장)
 호세아|음란한 아내 고멜을 맞으라는 명령을 받음 (호 1:2)|자녀들에게 이스르엘, 로루하마, 로암미라는 이름을 지음 (호 1:4-9)|팔려 간 아내를 은과 보리로 되사 옴 (호 3:1-2)|"내가 인애를 원하고 제사를 원하지 아니하며" (호 6:6)
-고멜|디블라임의 딸, 호세아의 아내가 됨 (호 1:3)|세 자녀를 낳음 (호 1장)|떠나갔다가 호세아에게 다시 사들여짐 (호 3장)
+고멜|디블라임의 딸, 호세아(선지자)의 아내가 됨 (호 1:3)|세 자녀를 낳음 (호 1장)|떠나갔다가 호세아(선지자)에게 다시 사들여짐 (호 3장)
 요엘|메뚜기 재앙을 보며 회개를 촉구함 (욜 1-2장)|"마음을 찢고 옷을 찢지 말지어다" (욜 2:13)|"내가 내 영을 만민에게 부어 주리니" 예언함 (욜 2:28)|베드로가 오순절 설교에서 인용함 (행 2:16-21)
 아모스|드고아의 목자이자 뽕나무를 재배하던 사람 (암 1:1; 7:14)|주변 나라와 이스라엘의 죄를 차례로 선포함 (암 1-2장)|"정의를 물 같이, 공의를 마르지 않는 강 같이" (암 5:24)|벧엘 제사장 아마샤에게 쫓겨남 (암 7:10-17)|다윗의 무너진 장막을 일으키리라 예언함 (암 9:11)
 오바댜|교만한 에돔의 멸망을 예언함 (옵 1:3-4)|형제 야곱이 환난당할 때 방관하고 약탈한 죄를 지적함 (옵 1:10-14)|"구원받은 자들이 시온 산에 올라와" 회복을 예언함 (옵 1:21)
@@ -1624,8 +1675,8 @@ const DEEDS_RAW = `
 빌라도|"진리가 무엇이냐" 하고 물음 (요 18:38)|예수께 죄를 찾지 못했으나 무리를 두려워해 십자가형에 넘김 (눅 23:13-25)|손을 씻으며 "이 사람의 피에 대하여 나는 무죄하니" (마 27:24)|"유대인의 왕 나사렛 예수"라는 죄패를 붙임 (요 19:19)
 헤롯 대왕|동방 박사들에게 아기의 위치를 알아오라 함 (마 2:7-8)|베들레헴과 그 지경의 두 살 아래 사내아이를 죽임 (마 2:16)
 헤롯 안디바|헤로디아 때문에 세례 요한을 옥에 가둠 (막 6:17)|생일 잔치에서 맹세 때문에 요한의 목을 벰 (막 6:21-28)|예수께 "저 여우"라 불림 (눅 13:32)|재판 중 예수를 보고 희롱한 뒤 빌라도에게 돌려보냄 (눅 23:8-12)
-헤로디아|동생 빌립의 아내였다가 헤롯 안디바와 결혼함 (막 6:17)|딸을 시켜 세례 요한의 머리를 요구함 (막 6:24)
-헤롯 아그립바 1세|요한의 형제 야고보를 칼로 죽임 (행 12:2)|베드로를 잡아 옥에 가둠 (행 12:3-4)|"신의 소리요 사람의 소리가 아니라"는 찬사를 받다 벌레에게 먹혀 죽음 (행 12:21-23)
+헤로디아|동생 빌립(헤롯의 아들)의 아내였다가 헤롯 안디바와 결혼함 (막 6:17)|딸을 시켜 세례 요한의 머리를 요구함 (막 6:24)
+헤롯 아그립바 1세|요한의 형제 야고보(세베대의 아들)를 칼로 죽임 (행 12:2)|베드로를 잡아 옥에 가둠 (행 12:3-4)|"신의 소리요 사람의 소리가 아니라"는 찬사를 받다 벌레에게 먹혀 죽음 (행 12:21-23)
 아그립바 2세|버니게와 함께 가이사랴에서 바울의 변론을 들음 (행 25:13-26:29)|"네가 적은 말로 나를 권하여 그리스도인이 되게 하려 하는도다" (행 26:28)
 벨릭스|바울의 재판을 미루고 2년 동안 가둬 둠 (행 24:22-27)|바울이 의와 절제와 심판을 말하자 두려워함 (행 24:25)|돈을 받을까 하여 자주 바울을 불러 이야기함 (행 24:26)
 베스도|바울을 예루살렘으로 보내 재판하려 함 (행 25:9)|바울의 가이사 상소를 받아들임 (행 25:12)|"네가 미쳤도다" 하고 외침 (행 26:24)
@@ -1664,25 +1715,25 @@ const DEEDS_RAW = `
 오므리|군대가 왕으로 추대함 (왕상 16:16)|디브니와 다투어 이김 (왕상 16:21-22)|세멜에게 산을 사서 사마리아를 세움 (왕상 16:24)
 아하시야(이스라엘)|여호사밧과 함께 배를 만들었으나 깨짐 (대하 20:35-37)|다락 난간에서 떨어져 에그론의 바알세붑에게 물음 (왕하 1:2)|엘리야를 잡으러 보낸 오십부장들이 불에 탐 (왕하 1:9-12)
 여호람(이스라엘)|바알의 주상을 없앰 (왕하 3:2)|유다·에돔과 함께 모압을 치다 엘리사의 도움으로 물을 얻음 (왕하 3장)|나아만의 편지를 받고 옷을 찢음 (왕하 5:7)|사마리아 포위 중 엘리사를 죽이려 함 (왕하 6:31)|길르앗 라못 전투에서 다쳐 이스르엘에서 쉬다 예후의 화살에 죽음 (왕하 9:24)
-예후|엘리사의 제자에게 기름 부음을 받음 (왕하 9:1-10)|병거를 미치게 몰며 이스르엘로 감 (왕하 9:20)|여호람과 아하시야, 이세벨을 죽임 (왕하 9장)|아합의 아들 70명과 바알 숭배자들을 진멸함 (왕하 10장)|금송아지는 그대로 둠 (왕하 10:29)
+예후|엘리사의 제자에게 기름 부음을 받음 (왕하 9:1-10)|병거를 미치게 몰며 이스르엘로 감 (왕하 9:20)|여호람(이스라엘)과 아하시야(유다), 이세벨을 죽임 (왕하 9장)|아합의 아들 70명과 바알 숭배자들을 진멸함 (왕하 10장)|금송아지는 그대로 둠 (왕하 10:29)
 여호아하스(이스라엘)|하사엘과 벤하닷의 손에 넘겨짐 (왕하 13:3)|여호와께 간구하여 구원자를 얻음 (왕하 13:4-5)|군대가 기병 50, 병거 10, 보병 1만만 남음 (왕하 13:7)
 요아스(이스라엘)|병든 엘리사에게 "내 아버지여 이스라엘의 병거와 마병이여" 하며 욺 (왕하 13:14)|화살로 땅을 세 번만 침 (왕하 13:18-19)|벤하닷을 세 번 쳐서 성읍을 되찾음 (왕하 13:25)|유다 왕 아마샤를 사로잡고 예루살렘 성벽을 헒 (왕하 14:11-14)
 여로보암 2세|요나의 예언대로 하맛 어귀부터 아라바 바다까지 회복함 (왕하 14:25)|다메섹과 하맛을 되찾음 (왕하 14:28)|그 시대의 사치와 불의를 아모스가 고발함 (암 6-7장)
 스가랴(이스라엘 왕)|6개월 다스림 (왕하 15:8)|백성 앞에서 살룸에게 죽임을 당해 예후 왕조가 4대에서 끝남 (왕하 15:10-12)
-살룸|스가랴를 죽이고 왕이 됨 (왕하 15:10)|사마리아에서 한 달 다스리다 므나헴에게 죽음 (왕하 15:13-14)
+살룸|스가랴(이스라엘 왕)를 죽이고 왕이 됨 (왕하 15:10)|사마리아에서 한 달 다스리다 므나헴에게 죽음 (왕하 15:13-14)
 므나헴|디르사에서 올라와 살룸을 죽임 (왕하 15:14)|딥사를 치고 잔인하게 행함 (왕하 15:16)|백성에게 은을 거둬 앗수르 왕 불에게 천 달란트를 바침 (왕하 15:19-20)
 브가히야|2년 다스림 (왕하 15:23)|장관 베가에게 사마리아 왕궁에서 죽임을 당함 (왕하 15:25)
-베가|브가히야를 죽이고 왕이 됨 (왕하 15:25)|아람 왕 르신과 함께 예루살렘을 침공함 (왕하 16:5; 사 7:1)|디글랏빌레셀에게 북쪽 땅과 백성을 잃음 (왕하 15:29)|호세아에게 죽임을 당함 (왕하 15:30)
+베가|브가히야를 죽이고 왕이 됨 (왕하 15:25)|아람 왕 르신과 함께 예루살렘을 침공함 (왕하 16:5; 사 7:1)|디글랏빌레셀에게 북쪽 땅과 백성을 잃음 (왕하 15:29)|호세아(이스라엘 왕)에게 죽임을 당함 (왕하 15:30)
 호세아(이스라엘 왕)|베가를 죽이고 왕이 됨 (왕하 15:30)|살만에셀에게 조공을 바치다 애굽에 사신을 보내 배반함 (왕하 17:3-4)|옥에 갇히고 3년 포위 끝에 사마리아가 함락됨 (왕하 17:5-6)
 아비얌|아버지 르호보암의 죄를 따름 (왕상 15:3)|스마라임 산 위에서 여로보암 군대에게 연설하고 이김 (대하 13:4-20)
 아사|우상과 남창을 없애고 우상을 만든 태후 마아가를 폐위함 (왕상 15:12-13)|구스 사람 세라의 백만 대군을 기도로 물리침 (대하 14:9-15)|선지자 아사랴의 말을 듣고 개혁함 (대하 15장)|바아사를 막으려 성전 보물로 아람과 동맹함 (왕상 15:18-20)|책망하는 하나니를 옥에 가둠 (대하 16:7-10)|발에 병이 들어도 의원만 찾음 (대하 16:12)
 여호사밧|레위인과 제사장을 보내 율법책을 가르침 (대하 17:7-9)|재판관을 세우고 공정한 재판을 명함 (대하 19:5-7)|아합과 함께 길르앗 라못에 갔다가 죽을 뻔함 (왕상 22장)|모압·암몬 연합군 앞에서 찬양대를 앞세워 승리함 (대하 20장)
 여호람(유다)|왕이 되자 형제들을 모두 죽임 (대하 21:4)|아합의 딸과 결혼해 아합의 길을 감 (왕하 8:18)|에돔과 립나가 배반함 (왕하 8:20-22)|엘리야의 편지대로 창자에 병이 들어 죽음 (대하 21:12-19)
-아하시야(유다)|어머니 아달랴의 꾀를 따름 (대하 22:3)|여호람과 함께 아람과 싸움 (왕하 8:28)|이스르엘에 문병 갔다가 예후에게 죽임을 당함 (왕하 9:27)
-아달랴|아들 아하시야가 죽자 왕의 씨를 진멸함 (왕하 11:1)|6년 동안 유다를 다스림 (왕하 11:3)|"반역이로다" 외치다 성전 밖에서 처형됨 (왕하 11:14-16)
-요아스(유다)|고모 여호세바가 성전에 6년 숨겨 살림 (왕하 11:2-3)|7세에 여호야다의 도움으로 왕이 됨 (왕하 11:21)|헌금궤를 두고 성전을 수리함 (왕하 12:9-15)|여호야다가 죽은 뒤 우상을 섬기고 그 아들 스가랴를 죽임 (대하 24:17-22)|하사엘에게 성물을 바침 (왕하 12:17-18)|신하들에게 죽임을 당함 (왕하 12:20-21)
+아하시야(유다)|어머니 아달랴의 꾀를 따름 (대하 22:3)|여호람(이스라엘)과 함께 아람과 싸움 (왕하 8:28)|이스르엘에 문병 갔다가 예후에게 죽임을 당함 (왕하 9:27)
+아달랴|아들 아하시야(유다)가 죽자 왕의 씨를 진멸함 (왕하 11:1)|6년 동안 유다를 다스림 (왕하 11:3)|"반역이로다" 외치다 성전 밖에서 처형됨 (왕하 11:14-16)
+요아스(유다)|고모 여호세바가 성전에 6년 숨겨 살림 (왕하 11:2-3)|7세에 여호야다의 도움으로 왕이 됨 (왕하 11:21)|헌금궤를 두고 성전을 수리함 (왕하 12:9-15)|여호야다가 죽은 뒤 우상을 섬기고 그 아들 스가랴(제사장)를 죽임 (대하 24:17-22)|하사엘에게 성물을 바침 (왕하 12:17-18)|신하들에게 죽임을 당함 (왕하 12:20-21)
 아마샤|아버지를 죽인 신하들을 처형하되 그 자녀는 죽이지 않음 (왕하 14:5-6)|소금 골짜기에서 에돔을 이김 (왕하 14:7)|에돔 신들을 섬김 (대하 25:14)|이스라엘 왕 요아스에게 싸움을 걸었다 사로잡힘 (왕하 14:8-13)|라기스에서 죽임을 당함 (왕하 14:19)
-웃시야|16세에 왕이 되어 52년 다스림 (대하 26:3)|스가랴가 사는 동안 하나님을 구해 형통함 (대하 26:5)|군대와 무기를 정비하고 농사를 좋아함 (대하 26:10-15)|성전에서 분향하려다 이마에 나병이 생김 (대하 26:16-21)|그가 죽던 해 이사야가 소명을 받음 (사 6:1)
+웃시야|16세에 왕이 되어 52년 다스림 (대하 26:3)|스가랴(웃시야의 조언자)가 사는 동안 하나님을 구해 형통함 (대하 26:5)|군대와 무기를 정비하고 농사를 좋아함 (대하 26:10-15)|성전에서 분향하려다 이마에 나병이 생김 (대하 26:16-21)|그가 죽던 해 이사야가 소명을 받음 (사 6:1)
 요담|아버지의 나병으로 왕궁을 다스림 (왕하 15:5)|성전 윗문을 건축함 (왕하 15:35)|암몬을 이기고 조공을 받음 (대하 27:5)|하나님 앞에서 바른 길을 걸어 강해짐 (대하 27:6)
 아하스|아들을 불 가운데로 지나가게 함 (왕하 16:3)|이사야의 표징 제안을 거절함 (사 7:10-12)|성전 보물로 디글랏빌레셀에게 도움을 청함 (왕하 16:7-8)|다메섹 제단을 본떠 성전에 세움 (왕하 16:10-16)|성전 문을 닫음 (대하 28:24)
 므낫세(유다 왕)|12세에 왕이 되어 55년 다스림 (왕하 21:1)|바알 제단과 아세라 목상을 세우고 아들을 불에 지나가게 함 (왕하 21:3-6)|무죄한 자의 피를 많이 흘림 (왕하 21:16)|앗수르 군대에 쇠사슬로 결박되어 바벨론으로 끌려가 회개함 (대하 33:11-13)|돌아와 이방 신을 없앰 (대하 33:15)
@@ -1694,22 +1745,22 @@ const DEEDS_RAW = `
 아히야|새 옷을 열두 조각으로 찢어 여로보암에게 열 조각을 줌 (왕상 11:29-31)|눈이 어두운 노년에 변장한 여로보암의 아내를 알아보고 심판을 전함 (왕상 14:1-16)
 벤하닷 1세|아사가 보낸 성전과 왕궁의 은금을 받고 바아사와 맺은 동맹을 깸 (왕상 15:18-19)|이스라엘 북쪽 이욘·단·아벨벧마아가와 긴네렛을 침 (왕상 15:20)
 벤하닷 2세|32명의 왕과 함께 사마리아를 포위했다가 아합에게 패함 (왕상 20:1-21)|이듬해 아벡에서 다시 패하고 아합에게 목숨을 건짐 (왕상 20:26-34)|엘리사를 잡으려 도단에 군대를 보냄 (왕하 6:8-14)|사마리아를 포위해 큰 기근이 듦 (왕하 6:24-25)|병들어 하사엘을 엘리사에게 보냈다가 그에게 죽음 (왕하 8:7-15)
-벤하닷 3세|아버지 하사엘과 함께 여호아하스 때 이스라엘을 압제함 (왕하 13:3)|요아스에게 세 번 패해 하사엘이 빼앗은 성읍들을 돌려줌 (왕하 13:24-25)|"벤하닷의 궁궐을 사르리라" 심판이 예언됨 (암 1:4; 렘 49:27)
-하사엘|벤하닷의 명령으로 엘리사에게 왕의 병을 물으러 감 (왕하 8:8-9)|엘리사가 울며 그가 이스라엘에 행할 악을 말함 (왕하 8:11-12)|이불을 물에 적셔 벤하닷을 죽이고 왕이 됨 (왕하 8:15)|요단 동편을 빼앗고 이스라엘을 학대함 (왕하 10:32-33; 13:22)|가드를 치고 예루살렘으로 향했다가 요아스의 성물을 받고 물러감 (왕하 12:17-18)
+벤하닷 3세|아버지 하사엘과 함께 여호아하스(이스라엘) 때 이스라엘을 압제함 (왕하 13:3)|요아스(이스라엘)에게 세 번 패해 하사엘이 빼앗은 성읍들을 돌려줌 (왕하 13:24-25)|"벤하닷의 궁궐을 사르리라" 심판이 예언됨 (암 1:4; 렘 49:27)
+하사엘|벤하닷의 명령으로 엘리사에게 왕의 병을 물으러 감 (왕하 8:8-9)|엘리사가 울며 그가 이스라엘에 행할 악을 말함 (왕하 8:11-12)|이불을 물에 적셔 벤하닷을 죽이고 왕이 됨 (왕하 8:15)|요단 동편을 빼앗고 이스라엘을 학대함 (왕하 10:32-33; 13:22)|가드를 치고 예루살렘으로 향했다가 요아스(유다)의 성물을 받고 물러감 (왕하 12:17-18)
 나봇|조상의 유업이라며 포도원을 아합에게 팔지 않음 (왕상 21:3)|이세벨의 계략으로 거짓 고발을 당해 돌에 맞아 죽음 (왕상 21:8-13)|그 피를 핥은 곳에서 아합의 피를 핥으리라는 예언이 이어짐 (왕상 21:19)
 오바댜(궁내대신)|여호와를 크게 경외함 (왕상 18:3)|이세벨이 선지자를 죽일 때 백 명을 오십 명씩 굴에 숨기고 먹임 (왕상 18:4)|가뭄 중 꼴을 찾다 엘리야를 만나 아합에게 알림 (왕상 18:7-16)
 미가야|아합이 미워한 선지자 (왕상 22:8)|400명의 선지자와 달리 패전을 예언함 (왕상 22:17)|거짓말하는 영의 환상을 전하고 뺨을 맞고 옥에 갇힘 (왕상 22:19-27)
 하나니|아람을 의지한 아사를 책망함 (대하 16:7-9)|그 일로 옥에 갇힘 (대하 16:10)|그 아들 예후도 선견자로 활동함 (왕상 16:1; 대하 19:2)
 게하시|수넴 여인이 아들이 없다고 엘리사에게 알림 (왕하 4:14)|죽은 아이에게 지팡이를 놓았으나 깨어나지 않음 (왕하 4:31)|나아만을 쫓아가 거짓말로 은과 옷을 받고 나병에 걸림 (왕하 5:20-27)|왕에게 엘리사의 큰일을 이야기함 (왕하 8:4-6)
-여호야다|아내 여호세바와 함께 아기 요아스를 성전에 숨김 (왕하 11:2-3; 대하 22:11)|군대를 모아 요아스를 왕으로 세우고 아달랴를 처형함 (왕하 11:4-16)|백성과 언약을 세우고 바알 신전을 헒 (왕하 11:17-18)|130세에 죽어 왕들의 묘실에 장사됨 (대하 24:15-16)
-스가랴(제사장)|하나님의 영에 감동되어 요아스와 백성을 책망함 (대하 24:20)|왕의 명령으로 성전 뜰에서 돌에 맞아 죽으며 "여호와는 감찰하시고 신원하여 주옵소서" (대하 24:21-22)
+여호야다|아내 여호세바와 함께 아기 요아스(유다)를 성전에 숨김 (왕하 11:2-3; 대하 22:11)|군대를 모아 요아스(유다)를 왕으로 세우고 아달랴를 처형함 (왕하 11:4-16)|백성과 언약을 세우고 바알 신전을 헒 (왕하 11:17-18)|130세에 죽어 왕들의 묘실에 장사됨 (대하 24:15-16)
+스가랴(제사장)|하나님의 영에 감동되어 요아스(유다)와 백성을 책망함 (대하 24:20)|왕의 명령으로 성전 뜰에서 돌에 맞아 죽으며 "여호와는 감찰하시고 신원하여 주옵소서" (대하 24:21-22)
 디글랏빌레셀|므나헴에게 은 천 달란트를 받음 (왕하 15:19)|베가 때 갈릴리와 납달리를 빼앗고 백성을 끌어감 (왕하 15:29)|아하스의 요청으로 다메섹을 치고 르신을 죽임 (왕하 16:7-9)
-살만에셀|호세아에게 조공을 받음 (왕하 17:3)|배반한 호세아를 가두고 사마리아를 3년 동안 에워쌈 (왕하 17:4-5)
+살만에셀|호세아(이스라엘 왕)에게 조공을 받음 (왕하 17:3)|배반한 호세아(이스라엘 왕)를 가두고 사마리아를 3년 동안 에워쌈 (왕하 17:4-5)
 산헤립|히스기야 14년에 유다의 견고한 성들을 침 (왕하 18:13)|랍사게를 보내 예루살렘을 조롱함 (왕하 18:17-35)|한 밤에 군사 18만 5천이 죽어 니느웨로 돌아감 (왕하 19:35-36)|신전에서 아들들에게 죽임을 당함 (왕하 19:37)
 므로닥발라단|병이 나은 히스기야에게 편지와 예물을 보냄 (왕하 20:12)|그 사절에게 히스기야가 보물을 보여 준 일로 바벨론 포로가 예고됨 (왕하 20:13-18)
 힐기야|성전 수리 중 율법책을 발견해 사반에게 줌 (왕하 22:8)|왕의 명으로 여선지자 훌다에게 물으러 감 (왕하 22:14)|바알 기구를 성전에서 내어 태움 (왕하 23:4)
 훌다|예루살렘 둘째 구역에 사는 여선지자 (왕하 22:14)|율법책의 재앙이 임하겠지만 겸비한 요시야는 평안히 죽으리라 전함 (왕하 22:15-20)
-느고|앗수르를 도우러 유브라데로 가다 므깃도에서 요시야를 죽임 (왕하 23:29)|여호아하스를 폐위하고 여호야김을 세움 (왕하 23:33-34)|갈그미스에서 느부갓네살에게 패함 (렘 46:2)
+느고|앗수르를 도우러 유브라데로 가다 므깃도에서 요시야를 죽임 (왕하 23:29)|여호아하스(유다)를 폐위하고 여호야김을 세움 (왕하 23:33-34)|갈그미스에서 느부갓네살에게 패함 (렘 46:2)
 시삭|솔로몬을 피해 도망한 여로보암을 받아줌 (왕상 11:40)|르호보암 5년에 예루살렘을 쳐서 성전과 왕궁의 보물과 금 방패를 빼앗음 (왕상 14:25-26)
 메사|양을 많이 길러 이스라엘에 조공을 바침 (왕하 3:4)|아합이 죽은 뒤 배반함 (왕하 3:5)|이스라엘·유다·에돔 연합군에 몰리자 성 위에서 맏아들을 번제로 드림 (왕하 3:26-27)
 르신|베가와 함께 예루살렘을 쳤으나 이기지 못함 (왕하 16:5)|엘랏을 되찾아 유다 사람을 쫓아냄 (왕하 16:6)|이사야가 "연기 나는 두 부지깽이 그루터기"라 부름 (사 7:4)|디글랏빌레셀에게 죽임을 당함 (왕하 16:9)
@@ -1808,6 +1859,9 @@ function renderPerson(){
     ${PERSON_NATION[p.id]?nationMap(PERSON_NATION[p.id]):''}
     ${routeMap(p.id)}
     ${p.deeds&&p.deeds.length?`<div class="sub" style="margin-top:4px">주요 행적</div><ol class="deeds">${p.deeds.map(t=>{ const m=t.match(/^(.*?)\s*(\(([^()]*)\))?$/); return `<li>${esc(m[1])}${m[3]?` <cite>${esc(m[3])}</cite>`:''}</li>`; }).join('')}</ol>`:''}
+    ${(()=>{ const pi=(typeof PROPHET_INFO!=='undefined') && PROPHET_INFO[p.id]; if(!pi||!pi[1]) return '';
+      const items=pi[1].split(/(?<=\))[.,]\s+/).map(t=>t.replace(/\.$/,''));
+      return `<div class="sub" style="margin-top:4px">받은 환상·예언</div><ol class="deeds prophecy">${items.map(t=>{ const m=t.match(/^(.*?)\s*(\(([^()]*)\))?$/); return `<li>${esc(m[1])}${m[3]?` <cite>${esc(m[3])}</cite>`:''}</li>`; }).join('')}</ol>`; })()}
     <div class="btnrow only-narrow"><button class="btn" data-go="graph">관계도로 보기</button></div>
     <div class="sub">등장·언급 성경 ${p.books.length}권</div>
     <div class="chips">${p.books.map(b=>`<button class="chip" data-book="${b}" title="${bookName(b)}">${bookName(b)}</button>`).join('')}</div>
@@ -1893,16 +1947,19 @@ function renderGraph(){
   });
   const rels = groups.flatMap(g=>g[1]);
   const n = rels.length;
-  const W = n>30 ? 860 : n>22 ? 760 : 600, cx=W/2, cy=W/2, R=W/2-8;
-  const rIn = W*0.27, rOut = W*0.40;
+  const W0 = n>30 ? 860 : n>22 ? 760 : 600, GK = Math.max(1,FZ); // 큰 글자: 인물 사이를 그만큼 넓혀 그리고, 화면에는 한 장으로 맞춤 (자세히는 크게 보기) // 큰 글자: 그림을 넓게 펼치고 옆으로 밀어 보기
+  const W = W0*GK, cx=W/2, cy=W/2, R=W/2-8;
+  let rIn = W*0.27, rOut = W*0.40;
   document.getElementById('gtitle').textContent = `${nameParts(p.id)[0]}의 관계도`;
   document.getElementById('gcount').textContent = n===all ? `${n}명과 연결` : `${all}명 중 ${n}명 표시`;
   document.getElementById('legend').innerHTML = legendHTML(p);
   const svg = document.getElementById('graph');
   svg.setAttribute('viewBox',`0 0 ${W} ${W}`);
   GZ.W = W; gzReset();
-  const cw = svg.clientWidth || (window.innerWidth<960 ? window.innerWidth-68 : 760);
-  const FS = FZ*Math.max(18.5, Math.min(n>30 ? 19.5 : n>22 ? 22.5 : 27, 14.2*W/cw)); // 인물이 많으면 겹치지 않게 덜 키움 (손가락으로 확대해서 보기) // 이름 글자 크기 (폰에서도 13px 넘게 보이도록)
+  svg.style.width='';
+  const cw = svg.parentElement.clientWidth || (window.innerWidth<960 ? window.innerWidth-68 : 760);
+  const FS = FZ*Math.max(18.5, Math.min(n>30 ? 19.5 : n>22 ? 22.5 : 27, 14.2*W0/cw)); // 인물이 많으면 겹치지 않게 덜 키움 (손가락으로 확대해서 보기) // 이름 글자 크기 (폰에서도 13px 넘게 보이도록)
+ // 큰 글자: 바깥 줄을 안쪽으로 당겨 아래쪽 이름이 잘리지 않게
   const SK = FS/15; state.gFSkey = Math.round(cw/40);
   // 피자 조각: 분류마다 인원수에 비례한 각도 (작은 분류도 최소 폭은 갖게)
   const weight = groups.map(([,rs])=>Math.max(rs.length, 1.6));
@@ -1951,11 +2008,14 @@ function renderGraph(){
     const short = label.length>16 ? label.slice(0,15)+'…' : label;
     const vtxt = (r.mine==='0'&&r.theirs==='0') ? '' : r.mine===r.theirs ? `서로 ${VW[r.mine]}` : `${VW[r.mine]} → / ← ${VW[r.theirs]}`;
     dots += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(FS*0.5).toFixed(1)}" fill="${dot}" stroke="var(--ink)" stroke-opacity=".55" stroke-width="1.6"/>`;
+    // 이름표 가로 위치: 글자가 그림 밖으로 나가지 않게 안쪽으로 밀기
+    const tw=Math.max([...nm].length*FS+(sb?[...sb].length*FS*0.7+FS*0.7:0), [...short].length*FS*0.78);
+    const tx=Math.max(tw/2+4, Math.min(W-tw/2-4, x));
     nodes += `<g class="gnode" data-person="${esc(r.id)}" tabindex="0" role="button" aria-label="${esc(r.id)}, ${esc(CATS[r.cat])}, ${esc(label)}${vtxt?', '+vtxt:''}">
       <title>${esc(r.id)} — ${esc(label)}${vtxt?' ('+vtxt+')':''}</title>
       <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(FS*0.9).toFixed(1)}" fill="transparent"/>
-      <text x="${x.toFixed(1)}" y="${(y+FS*1.55).toFixed(1)}" text-anchor="middle" font-size="${FS.toFixed(1)}" fill="var(--ink)" stroke="var(--surface)" stroke-width="${(FS*0.3).toFixed(1)}" paint-order="stroke">${esc(nm)}${sb?`<tspan font-size="${(FS*0.7).toFixed(1)}" fill="var(--muted)">(${esc(sb)})</tspan>`:''}</text>
-      <text x="${x.toFixed(1)}" y="${(y+FS*2.6).toFixed(1)}" text-anchor="middle" font-size="${(FS*0.78).toFixed(1)}" fill="${state.gmode==='val'?'var(--muted)':col}" stroke="var(--surface)" stroke-width="${(FS*0.28).toFixed(1)}" paint-order="stroke">${esc(short)}</text>
+      <text x="${tx.toFixed(1)}" y="${(y+FS*1.55).toFixed(1)}" text-anchor="middle" font-size="${FS.toFixed(1)}" fill="var(--ink)" stroke="var(--surface)" stroke-width="${(FS*0.3).toFixed(1)}" paint-order="stroke">${esc(nm)}${sb?`<tspan font-size="${(FS*0.7).toFixed(1)}" fill="var(--muted)">(${esc(sb)})</tspan>`:''}</text>
+      <text x="${tx.toFixed(1)}" y="${(y+FS*2.6).toFixed(1)}" text-anchor="middle" font-size="${(FS*0.78).toFixed(1)}" fill="${state.gmode==='val'?'var(--muted)':col}" stroke="var(--surface)" stroke-width="${(FS*0.28).toFixed(1)}" paint-order="stroke">${esc(short)}</text>
     </g>`;
   });
   const [cm] = nameParts(p.id);
@@ -1966,6 +2026,8 @@ function renderGraph(){
   const sk = PREF.font==='gothic' ? '' : ' filter="url(#gsk)"'; // 고딕체에서는 손그림 흔들림 없이 반듯한 선
   const cd = PREF.font==='gothic' ? centerDisk.replace(/<circle[^>]*stroke-dasharray[^>]*\/>/,'') : centerDisk;
   svg.innerHTML = n ? SKF+`<g${sk} stroke-linecap="round">${bg+seps+edges+links+cd+dots}</g>`+tags+center+nodes : SKF+`<g${sk}>${cd}</g>`+center+`<text x="${cx}" y="${cy+cr+FS*1.6}" text-anchor="middle" font-size="${FS*0.85}" fill="var(--muted)">${all ? '고른 분류에 해당하는 관계가 없습니다' : '정리된 관계가 아직 없습니다'}</text>`;
+  // 넘친 글자까지 다 보이도록 보이는 범위를 넓힘 (그림 전체가 그만큼 작아짐)
+  GZ.o=0; GZ.W=W; GZ.base=W; gzReset(); requestAnimationFrame(gFit);
 }
 
 /* ===== 왕 연대표 =====
@@ -2006,7 +2068,7 @@ j|2|여호람(유다)|848|841|8년|b|형제들을 죽이고 아합의 길을 따
 j|2|아하시야(유다)|841|841|1년|b|외삼촌 요람을 문병하러 갔다가 예후에게 죽음|아달랴,예후
 i|3|예후|841|814|28년|m|아합 집안과 바알 숭배자를 진멸했으나 금송아지는 남겨 둠|엘리사,이세벨,하사엘
 j|3|아달랴|841|835|6년|b|왕족을 죽이고 왕위를 빼앗은 유다의 유일한 여왕. 여호야다에게 처형됨|여호야다
-j|3|요아스(유다)|835|796|40년|m|여호야다가 살아 있는 동안 성전을 수리했으나, 그 뒤 우상으로 돌아서고 스가랴를 죽임|여호야다,스가랴(제사장),하사엘
+j|3|요아스(유다)|835|796|40년|m|여호야다가 살아 있는 동안 성전을 수리했으나, 그 뒤 우상으로 돌아서고 스가랴(제사장)를 죽임|여호야다,스가랴(제사장),하사엘
 i|3|여호아하스(이스라엘)|814|798|17년|b|아람의 압제 속에 여호와께 간구하여 구원자를 얻음|하사엘
 i|3|요아스(이스라엘)|798|782|16년|b|엘리사의 임종을 지키고 아람을 세 번 이김. 유다 왕 아마샤를 사로잡음|엘리사,아마샤
 j|3|아마샤|796|767|29년|m|에돔을 이긴 뒤 에돔 신상을 섬기고 이스라엘에 싸움을 걸었다가 패함|요아스(이스라엘)
@@ -2232,7 +2294,7 @@ function renderTimeline(){
   const FX0 = COLS.ax[0]+7.5, FW = COLS.ax[1]-FX0;
   fb.forEach(b=>{
     const w=FW/b.tracks, left=FX0+w*b.track, f=b.f;
-    html += `<button class="tl-b fo" data-person="${esc(f.id)}" title="${esc(f.id)} (${f.nation}) · BC ${f.start}–${f.end}" style="top:${b.y0}px;height:${b.y1-b.y0}px;left:calc(${left}% + 1px);width:calc(${w}% - 2px);--nc:${NATION[f.nation]}"><b class="fon" style="top:${b.nt}px;height:${b.nh}px">${esc(f.id).replace(/ ?(\d+)/g,'<span class="tcu">$1</span>')}</b></button>`;
+    html += `<button class="tl-b fo" data-person="${esc(f.id)}" title="${esc(f.id)} (${f.nation}) · BC ${f.start}–${f.end}" data-nation="${f.nation}" data-yrs="${f.start}–${f.end}" style="top:${b.y0}px;height:${b.y1-b.y0}px;left:calc(${left}% + 1px);width:calc(${w}% - 2px);--nc:${NATION[f.nation]}"><b class="fon" style="top:${b.nt}px;height:${b.nh}px">${esc(f.id).replace(/ ?(\d+)/g,'<span class="tcu">$1</span>')}</b></button>`;
   });
   blocks.forEach(b=>{
     const [l,r]=COLS[b.col]; const w=(r-l)/b.tracks;
@@ -2246,9 +2308,9 @@ function renderTimeline(){
       label = `<b>${esc(nm)}</b>`;
     } else {
       const lines = Math.floor((h-48*FZ)/(17.3*FZ));
-      label = `<b>${esc(nm)}${nsb?`<i class="tl-sub">${esc(nsb)}</i>`:''}</b>${h>=40*FZ?`<small>${yr}${k.len?' · '+esc(k.len):''}</small>`:''}${lines>=2?`<span class="tl-d" style="-webkit-line-clamp:${lines}">${esc(k.desc)}</span>`:''}`;
+      label = `<b>${esc(nm)}${nsb?`<i class="tl-sub">${esc(nsb)}</i>`:''}</b><small${h>=40*FZ?'':' style="display:none"'}>${yr}${k.len?' · '+esc(k.len):''}</small>${k.desc?`<span class="tl-d" style="${lines>=2?`-webkit-line-clamp:${lines}`:'display:none'}">${esc(k.desc)}</span>`:''}`; /* 짧은 칸도 내용은 넣어 두고 숨김 (꾹 누르면 펼쳐 보임) */
     }
-    html += `<button class="tl-b ${cls}" data-person="${esc(k.id)}" title="${esc(k.id)} · BC ${yr}" style="top:${b.y0}px;height:${h}px;left:calc(${left}% + 1px);width:calc(${wid}% - 2px)">${label}</button>`;
+    html += `<button class="tl-b ${cls}" data-person="${esc(k.id)}" title="${esc(k.id)} · BC ${yr}"${k.kind==='pr'?` data-yrs="${esc(k.yrs)}" data-desc="${esc(k.desc)}"`:''} style="top:${b.y0}px;height:${h}px;left:calc(${left}% + 1px);width:calc(${wid}% - 2px)">${label}</button>`;
   });
   const hd=(c,t,cls='')=>COLS[c]?`<span class="${cls}" style="left:${COLS[c][0]}%;width:${COLS[c][1]-COLS[c][0]}%">${t}</span>`:'';
   return `<div class="tl-head">${hd('kL','북이스라엘 왕')}${hd('pL','북<br>선지자','p')}${hd('ax',showFo?'연도(BC)<br>주변국 왕':'BC')}${hd('pR','남<br>선지자','p')}${hd('kR','남유다 왕')}</div>
@@ -2703,10 +2765,19 @@ document.addEventListener('click',e=>{
   if(e.target.closest('.vs-go')){ wRead(); document.getElementById('verseSheet').hidden=true; verseGo({bk:WS.bk,ch:WS.ch,v:WS.v||null}); }
 });
 
+function tlFit(){ // 칸마다 남은 높이에 맞춰 설명 줄 수를 정해, 줄이 반쯤 잘려 보이지 않게
+  const kv=document.getElementById('kings'); if(!kv || !kv.offsetParent) return; // 연대표가 화면에 없을 때는 나중에
+  document.querySelectorAll('#kings .tl-b:not(.pr):not(.fo)').forEach(b=>{ const sm=b.querySelector('small'); if(sm && b.clientHeight){ sm.style.display=''; if(sm.offsetTop+sm.offsetHeight>b.clientHeight-2) sm.style.display='none'; } });
+  document.querySelectorAll('#kings .tl-b:not(.pr):not(.fo)').forEach(b=>{ const d=b.querySelector('.tl-d'); if(!d || !b.clientHeight) return;
+    d.style.webkitLineClamp=''; d.style.display='-webkit-box';
+    const lh=parseFloat(getComputedStyle(d).lineHeight)||16, room=b.clientHeight-d.offsetTop-4, n=Math.floor(room/lh);
+    if(n<1){ d.style.display='none'; } else { d.style.webkitLineClamp=n; d.style.maxHeight=(n*lh)+'px'; } });
+}
+window.addEventListener('resize',()=>{ if(state.kview==='time') requestAnimationFrame(tlFit); });
 function renderKings(){
   document.querySelectorAll('#kview button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.kv===state.kview));
   document.querySelectorAll('#klayer button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.kl===state.klayer));
-  if(state.kview==='time'){ document.getElementById('kings').innerHTML = renderTimeline(); scrubInit(); return; }
+  if(state.kview==='time'){ document.getElementById('kings').innerHTML = renderTimeline(); scrubInit(); requestAnimationFrame(tlFit); return; }
   if(document.getElementById('scrubInfo')) document.getElementById('scrubInfo').hidden=true;
   const show = k => k.kind==='ev' || k.kind==='king' || (k.kind==='pr' && state.klayer!=='k') || (k.kind==='fg' && (k.lane==='j' || state.klayer==='kpf'));
   document.getElementById('kings').innerHTML = PERIODS.map(([yr,title,desc,lanes],pi)=>{
@@ -2751,6 +2822,8 @@ function setTab(t){
     if((tk==='main'||tk==='books') && SPOS.booksInner!=null) document.getElementById('v-books').scrollTop=SPOS.booksInner;
   }
   if(typeof scrubVisible==='function') requestAnimationFrame(scrubVisible);
+  if(t==='kings' && typeof tlFit==='function') requestAnimationFrame(tlFit);
+  if((t==='graph'||wide()) && typeof gFit==='function') requestAnimationFrame(gFit);
   if(typeof pushNav==='function') pushNav();
 }
 function selectPerson(id, toTab){
@@ -2774,8 +2847,14 @@ const GZ_MAX = 4;
 function gzApply(){
   const svg=document.getElementById('graph'), v=GZ.W/GZ.k;
   GZ.x=Math.max(0,Math.min(GZ.W-v,GZ.x)); GZ.y=Math.max(0,Math.min(GZ.W-v,GZ.y));
-  svg.setAttribute('viewBox',`${GZ.x.toFixed(1)} ${GZ.y.toFixed(1)} ${v.toFixed(1)} ${v.toFixed(1)}`);
+  svg.setAttribute('viewBox',`${(GZ.x-(GZ.o||0)).toFixed(1)} ${(GZ.y-(GZ.o||0)).toFixed(1)} ${v.toFixed(1)} ${v.toFixed(1)}`);
   document.getElementById('gwrap').classList.toggle('zoomed', GZ.k>1.01);
+}
+function gFit(){ // 그림 밖으로 넘친 글자까지 다 보이게 보이는 범위를 넓힘 (화면에 보일 때만 잴 수 있음)
+  const svg=document.getElementById('graph'); if(!svg || !svg.getBoundingClientRect().width) return;
+  const W=GZ.base||GZ.W; let pad=0;
+  try{ const bb=svg.getBBox(); pad=Math.ceil(Math.max(0,-bb.x,-bb.y,bb.x+bb.width-W,bb.y+bb.height-W)); }catch(e){}
+  GZ.o = pad>0 ? pad+6 : 0; GZ.W = W+2*GZ.o; gzReset();
 }
 function gzReset(){ GZ.k=1; GZ.x=0; GZ.y=0; gzApply(); }
 function gzToSvg(cx,cy){ const r=document.getElementById('graph').getBoundingClientRect(), u=GZ.W/GZ.k/r.width; return [GZ.x+(cx-r.left)*u, GZ.y+(cy-r.top)*u]; }
@@ -2826,7 +2905,7 @@ function gzZoomAt(k, cx, cy){ // 화면의 (cx,cy) 지점을 고정한 채로 �
 })();
 
 let kResizeT; window.addEventListener('resize',()=>{ clearTimeout(kResizeT); kResizeT=setTimeout(()=>{ if(state.kview==='time' && document.getElementById('kings').clientWidth && tlNarrow()!==state.tlN) renderKings(); },250); });
-let gResizeT; window.addEventListener('resize',()=>{ clearTimeout(gResizeT); gResizeT=setTimeout(()=>{ const sv=document.getElementById('graph'); if(sv.clientWidth && Math.round(sv.clientWidth/40)!==state.gFSkey && GZ.k<=1.01) renderGraph(); },250); });
+let gResizeT; window.addEventListener('resize',()=>{ clearTimeout(gResizeT); gResizeT=setTimeout(()=>{ const sv=document.getElementById('graph'); if(sv.parentElement.clientWidth && Math.round(sv.parentElement.clientWidth/40)!==state.gFSkey && GZ.k<=1.01) renderGraph(); },250); });
 document.addEventListener('click',e=>{
   const tab = e.target.closest('.tabs [data-tab]'); if(tab){ setTab(tab.dataset.tab); return; }
   const kv = e.target.closest('[data-kv]'); if(kv){ state.kview=kv.dataset.kv; renderKings(); return; }
@@ -3156,15 +3235,47 @@ const QUICK = (()=>{ try{ const q=JSON.parse(localStorage.getItem(QK)||'{}'); re
 function saveQuick(){ try{ localStorage.setItem(QK, JSON.stringify(QUICK)); }catch(e){} }
 function addRecent(id){ QUICK.recent=[id, ...QUICK.recent.filter(x=>x!==id)].slice(0,10); saveQuick(); renderQuick(); }
 function toggleFav(id){ QUICK.fav = QUICK.fav.includes(id) ? QUICK.fav.filter(x=>x!==id) : [id, ...QUICK.fav]; saveQuick(); renderQuick(); renderPerson(); }
+/* 꾹 누르면 지우기 모드(빨간 − 표시), 줄마다 접기·전체 삭제 */
+const QEDIT={row:null};
 function renderQuick(){
   let el=document.getElementById('quick');
   if(!el){ document.getElementById('v-books').insertAdjacentHTML('afterbegin','<div id="quick" class="quick"></div>'); el=document.getElementById('quick'); }
-  const chip=(id,star)=>`<button class="qchip${star?' fav':''}" data-person="${esc(id)}">${star?'★ ':''}${esc(nameParts(id)[0])}${nameParts(id)[1]?`<small>${esc(nameParts(id)[1])}</small>`:''}</button>`;
+  QUICK.fold=QUICK.fold||{};
   const rec=QUICK.recent.filter(id=>!QUICK.fav.includes(id));
   el.hidden = !QUICK.fav.length && !rec.length;
-  el.innerHTML = (QUICK.fav.length?`<div class="qrow"><span class="qlab">즐겨찾기</span>${QUICK.fav.map(id=>chip(id,true)).join('')}</div>`:'')
-    + (rec.length?`<div class="qrow"><span class="qlab">최근 본 인물</span>${rec.map(id=>chip(id,false)).join('')}</div>`:'');
+  const chip=(id,row)=>`<span class="qwrap"><button class="qchip${row==='fav'?' fav':''}" data-person="${esc(id)}" data-qrow="${row}">${row==='fav'?'★ ':''}${esc(nameParts(id)[0])}${nameParts(id)[1]?`<small>${esc(nameParts(id)[1])}</small>`:''}</button>${QEDIT.row===row?`<button type="button" class="qdel" data-qdel="${esc(id)}" data-qrow="${row}" aria-label="${esc(nameParts(id)[0])} 지우기">−</button>`:''}</span>`;
+  const row=(key,lab,ids)=>{ if(!ids.length) return ''; const fold=QUICK.fold[key], ed=QEDIT.row===key;
+    return `<div class="qblock${fold?' folded':''}${ed?' editing':''}"><div class="qhd"><button type="button" class="qlab" data-qfold="${key}" aria-expanded="${!fold}">${lab} <span class="qarr">${fold?'▸':'▾'}</span></button>
+      ${!fold?(ed?(QEDIT.ask===key?`<span class="qask">모두 지울까요?</span><button type="button" class="qact warn" data-qclearyes="${key}">지우기</button><button type="button" class="qact" data-qclearno>취소</button>`:`<button type="button" class="qact" data-qclear="${key}">전체 삭제</button><button type="button" class="qact done" data-qdone>완료</button>`):`<button type="button" class="qact" data-qedit="${key}">편집</button>`):''}</div>
+      ${fold?'':`<div class="qrow">${ids.map(id=>chip(id,key)).join('')}</div>`}${ed&&!fold?'<p class="qtip">− 를 눌러 하나씩 지우세요.</p>':''}</div>`; };
+  el.innerHTML = row('fav','즐겨찾기',QUICK.fav) + row('recent','최근 본 인물',rec);
 }
+function qRemove(key,id){
+  if(key==='fav'){ QUICK.fav=QUICK.fav.filter(x=>x!==id); QUICK.recent=QUICK.recent.filter(x=>x!==id); }
+  else QUICK.recent=QUICK.recent.filter(x=>x!==id);
+  saveQuick(); if((key==='fav'?QUICK.fav:QUICK.recent.filter(x=>!QUICK.fav.includes(x))).length===0) QEDIT.row=null; renderQuick(); renderPerson();
+}
+(()=>{ let t=null, fired=false, sx=0, sy=0;
+  document.addEventListener('pointerdown',e=>{ const c=e.target.closest('.qchip'); if(!c) return; fired=false; sx=e.clientX; sy=e.clientY;
+    clearTimeout(t); t=setTimeout(()=>{ fired=true; QEDIT.row=c.dataset.qrow; renderQuick(); if(navigator.vibrate) try{ navigator.vibrate(15); }catch(err){} },500); });
+  const cancel=e=>{ if(t && e && e.type==='pointermove' && Math.hypot(e.clientX-sx,e.clientY-sy)<8) return; clearTimeout(t); t=null; };
+  ['pointerup','pointercancel','pointermove'].forEach(ev=>document.addEventListener(ev,cancel,{passive:true}));
+  document.addEventListener('contextmenu',e=>{ if(e.target.closest('.qchip')) e.preventDefault(); });
+  document.addEventListener('click',e=>{
+    if(fired && e.target.closest('.qchip')){ e.preventDefault(); e.stopPropagation(); fired=false; return; }
+    const d=e.target.closest('[data-qdel]'); if(d){ e.stopPropagation(); qRemove(d.dataset.qrow,d.dataset.qdel); return; }
+    const f=e.target.closest('[data-qfold]'); if(f){ e.stopPropagation(); QUICK.fold=QUICK.fold||{}; QUICK.fold[f.dataset.qfold]=!QUICK.fold[f.dataset.qfold]; if(QEDIT.row===f.dataset.qfold) QEDIT.row=null; saveQuick(); renderQuick(); return; }
+    const ed=e.target.closest('[data-qedit]'); if(ed){ e.stopPropagation(); QEDIT.row=ed.dataset.qedit; renderQuick(); return; }
+    if(e.target.closest('[data-qdone]')){ e.stopPropagation(); QEDIT.row=null; QEDIT.ask=null; renderQuick(); return; }
+    const cl=e.target.closest('[data-qclear]'); if(cl){ e.stopPropagation(); QEDIT.ask=cl.dataset.qclear; renderQuick(); return; }
+    if(e.target.closest('[data-qclearno]')){ e.stopPropagation(); QEDIT.ask=null; renderQuick(); return; }
+    const cy=e.target.closest('[data-qclearyes]'); if(cy){ e.stopPropagation(); const k=cy.dataset.qclearyes; QEDIT.ask=null;
+      if(k==='fav') QUICK.fav=[]; else QUICK.recent=QUICK.recent.filter(x=>QUICK.fav.includes(x));
+      QEDIT.row=null; saveQuick(); renderQuick(); renderPerson(); return; }
+    if(QEDIT.row && e.target.closest('.qchip')){ e.preventDefault(); e.stopPropagation(); return; } // 지우기 모드에서는 인물로 이동하지 않음
+    if(QEDIT.row && !e.target.closest('#quick')){ QEDIT.row=null; QEDIT.ask=null; renderQuick(); }
+  },true);
+})();
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-fav]'); if(b){ e.stopPropagation(); toggleFav(b.dataset.fav); } },true);
 
 /* ===== 두 인물 사이의 연결 찾기 (관계를 따라 가장 짧은 길) ===== */
@@ -3232,7 +3343,8 @@ function mzEl(){ let o=document.getElementById('mapZoom'); if(o) return o;
 const mzSvg=()=>document.querySelector('#mapZoom .mz-body svg');
 function mzApply(){ const sv=mzSvg(); if(!sv) return;
   if(!MZ.route){ MZ.x=Math.max(0,Math.min(MZ.W-MZ.w,MZ.x)); MZ.y=Math.max(0,Math.min(MZ.H-MZ.h,MZ.y)); }
-  sv.setAttribute('viewBox',`${MZ.x.toFixed(2)} ${MZ.y.toFixed(2)} ${MZ.w.toFixed(2)} ${MZ.h.toFixed(2)}`); }
+  const ox=MZ.route?0:(MZ.ox||0), oy=MZ.route?0:(MZ.oy||0);
+  sv.setAttribute('viewBox',`${(MZ.x+ox).toFixed(2)} ${(MZ.y+oy).toFixed(2)} ${MZ.w.toFixed(2)} ${MZ.h.toFixed(2)}`); }
 function mzFit(){ const sv=mzSvg(), body=document.querySelector('#mapZoom .mz-body'); if(!sv) return;
   if(MZ.route){ sv.style.width=body.clientWidth+'px'; sv.style.height=body.clientHeight+'px'; return; }
   const s=Math.min(body.clientWidth/MZ.W, body.clientHeight/MZ.H); sv.style.width=(MZ.W*s)+'px'; sv.style.height=(MZ.H*s)+'px'; }
@@ -3266,7 +3378,7 @@ function mapZoomOpen(svg, title){
     let w=hw, h=hh; if((w*cl)/h < A) w=h*A/cl; else h=w*cl/A;
     MZ.geo0={cx,cy,hw:w,hh:h}; mzRoute({...MZ.geo0});
   } else {
-    const vb=svg.getAttribute('viewBox').split(/\s+/).map(Number); MZ.W=vb[2]; MZ.H=vb[3];
+    const vb=svg.getAttribute('viewBox').split(/\s+/).map(Number); MZ.W=vb[2]; MZ.H=vb[3]; MZ.ox=vb[0]; MZ.oy=vb[1];
     const c=svg.cloneNode(true); c.removeAttribute('style'); body.replaceChildren(c); mzFit(); mzReset();
   }
   try{ history.pushState({...(history.state||{}), mz:true},''); }catch(e){}
@@ -3299,6 +3411,13 @@ function mzBind(o){
 window.addEventListener('resize',()=>{ if(!MZ.open) return; if(MZ.route) mzRoute({...MZ.geo}); else mzFit(); });
 window.addEventListener('popstate',e=>{ if(MZ.open && !(e.state&&e.state.mz)) mapZoomClose(true); }, true);
 document.addEventListener('click',e=>{
+  if(!e.target.closest('.gz-big')) return;
+  const g=document.getElementById('graph'), c=g.cloneNode(true);
+  c.setAttribute('viewBox',`${-(GZ.o||0)} ${-(GZ.o||0)} ${GZ.W} ${GZ.W}`); c.removeAttribute('id');
+  c.querySelectorAll('[data-person]').forEach(n=>{ n.removeAttribute('data-person'); n.removeAttribute('tabindex'); });
+  mapZoomOpen(c, document.getElementById('gtitle').textContent||'관계도');
+});
+document.addEventListener('click',e=>{
   const b=e.target.closest('.mz-open'); if(!b) return; const sv=b.parentElement.querySelector('svg');
   mapZoomOpen(sv, sv.getAttribute('aria-label')||'지도');
 });
@@ -3315,7 +3434,7 @@ const PREF_KEY='chesed-atlas-pref';
 const SIZES=[['작게',0.88],['보통',1],['크게',1.15],['아주 크게',1.32]];
 const PREF=(()=>{ try{ return Object.assign({font:'hand',size:1}, JSON.parse(localStorage.getItem(PREF_KEY)||'{}')); }catch(e){ return {font:'hand',size:1}; } })();
 function applyPrefs(rerender){
-  FZ=SIZES[PREF.size]?SIZES[PREF.size][1]:1; TS=1.25*FZ;
+  FZ=SIZES[PREF.size]?SIZES[PREF.size][1]:1; TS=1.25*Math.pow(FZ,1.8); // 글자가 커지면 칸 높이를 넉넉히
   document.documentElement.style.setProperty('--fz', FZ);
   document.body.classList.toggle('gothic', PREF.font==='gothic');
   document.querySelectorAll('[data-pf-font]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.pfFont===PREF.font));
@@ -3355,6 +3474,80 @@ async function wakeSync(fromClick){
 document.addEventListener('visibilitychange',()=>{ if(document.visibilityState==='visible' && PREF.wake) wakeSync(false); });
 document.addEventListener('pointerdown',()=>{ if(PREF.wake && !WAKE) wakeSync(false); },{passive:true});
 wakeSync(false);
+
+/* 주변국: 성경에서 함께 쓰는 이름 */
+const NATION_INFO = {
+  '애굽':'이집트. 성경에서는 미스라임(창 10:6), "함의 땅"(시 105:23), 라합(시 87:4, 사 30:7)이라고도 부름',
+  '아람':'시리아. 개역개정에서는 수리아(마 4:24, 눅 2:2)라고도 하고, 수도 이름을 따 다메섹이라고도 부름. 아람 소바·아람 나하라임 등 여러 나라가 있었음',
+  '앗수르':'아시리아. 수도는 니느웨(욘 1:2). 셈의 아들 앗수르(창 10:22)의 이름을 딴 나라로 봄',
+  '바벨론':'바빌로니아. 성경에서는 갈대아(갈대아 사람, 단 5:30), 시날 땅(창 11:2, 단 1:2), 세삭(렘 25:26)이라고도 부름',
+  '모압':'요단 동쪽, 사해 동편의 나라. 롯의 후손(창 19:37). 아르논 골짜기와 길하레셋, 디본 등이 중심지',
+  '바사':'페르시아. 메대와 함께 "메대와 바사"로 자주 나옴(단 5:28, 에 1:19). 수도는 수산',
+  '메대':'메디아. 바사와 함께 "메대와 바사"로 나옴(단 6:8). 다리오가 이 나라 사람으로 소개됨(단 5:31)'
+};
+/* 선지자: 활동 지역과 받은 환상·예언 */
+const PROPHET_INFO = {
+  '사무엘':['라마 출신. 실로 성소에서 자라 벧엘·길갈·미스바를 돌며 재판함 (삼상 7:15-17)','어린 시절 "사무엘아" 부르시는 음성을 듣고 엘리 집안의 심판을 전함(삼상 3장). 왕을 구하는 백성에게 왕정의 폐단을 경고함(삼상 8장). "순종이 제사보다 나으니"(삼상 15:22)'],
+  '나단':['예루살렘, 다윗의 궁정','다윗의 집을 영원히 세우리라는 언약(삼하 7장). 양 한 마리 비유로 밧세바 일을 책망함, "당신이 그 사람이라"(삼하 12:7)'],
+  '아히야':['실로 출신. 북이스라엘','새 옷을 열두 조각으로 찢어 여로보암에게 열 지파를 주리라 예언(왕상 11:29-39). 뒤에 금송아지 죄로 여로보암 집의 멸망을 예언(왕상 14:7-16)'],
+  '하나니':['남유다, 예루살렘','"여호와의 눈은 온 땅을 두루 감찰하사" 아람을 의지한 아사를 책망함(대하 16:7-9)'],
+  '엘리야':['디셉(길르앗) 출신. 북이스라엘, 그릿 시냇가, 사르밧, 갈멜 산, 호렙 산','가뭄 선포(왕상 17:1). 갈멜 산에서 바알 선지자들과 대결(왕상 18장). 호렙 산에서 세미한 소리를 들음(왕상 19:12). 아합 집안과 이세벨의 멸망 예언(왕상 21:21-23)'],
+  '미가야':['사마리아. 북이스라엘','온 이스라엘이 목자 없는 양같이 흩어진 환상, 하늘 보좌와 거짓말하는 영의 환상(왕상 22:17-23). 아합의 전사를 예언'],
+  '엘리사':['아벨므홀라 출신. 여리고, 벧엘, 갈멜 산, 수넴, 사마리아, 도단, 다메섹','종의 눈을 열어 불말과 불병거가 산에 가득한 것을 보게 함(왕하 6:17). 사마리아 포위가 풀리리라는 예언(왕하 7:1). 하사엘이 아람 왕이 되리라는 예언(왕하 8:13)'],
+  '오바댜':['남유다 (연대와 장소 논란)','교만한 에돔의 멸망, "네가 행한 대로 너도 받을 것"(옵 1:15). 시온 산의 구원과 회복'],
+  '요엘':['남유다, 예루살렘 (연대 논란)','메뚜기 재앙과 여호와의 날(욜 1-2장). "내가 내 영을 만민에게 부어 주리니"(욜 2:28). 여호사밧 골짜기의 심판(욜 3장)'],
+  '요나':['가드헤벨(갈릴리) 출신. 북이스라엘, 그리고 앗수르의 니느웨','여로보암 2세의 국경 회복 예언(왕하 14:25). "사십 일이 지나면 니느웨가 무너지리라"(욘 3:4)'],
+  '아모스':['남유다 드고아 출신. 북이스라엘 벧엘에서 외침','메뚜기·불·다림줄·여름 과일 광주리 환상(암 7-8장). "정의를 물 같이, 공의를 마르지 않는 강 같이"(암 5:24). 다윗의 무너진 장막 회복(암 9:11)'],
+  '호세아':['북이스라엘 (에브라임)','음란한 아내와 자녀들의 이름으로 이스라엘의 배신을 보여 줌(호 1-3장). "내가 인애를 원하고 제사를 원하지 아니하며"(호 6:6). "이스라엘이 어렸을 때에 내가 사랑하여"(호 11:1)'],
+  '이사야':['예루살렘. 남유다 왕궁과 성전','성전에서 스랍들이 "거룩하다" 외치는 환상(사 6장). 임마누엘(사 7:14), 한 아기(사 9:6), 이새의 줄기(사 11장), 고난받는 종(사 53장), 새 하늘과 새 땅(사 65장)'],
+  '미가':['모레셋(유다 서남쪽 평지) 출신. 남유다','사마리아와 예루살렘의 심판(미 1장). 칼을 쳐서 보습을 만드는 평화(미 4:3). 베들레헴에서 나실 통치자(미 5:2). "오직 정의를 행하며 인자를 사랑하며"(미 6:8)'],
+  '나훔':['엘고스 출신 (위치 미상). 남유다','앗수르의 수도 니느웨의 멸망(나 1-3장). "여호와는 선하시며 환난 날에 산성이시라"(나 1:7)'],
+  '스바냐':['예루살렘. 남유다 (히스기야의 현손)','온 땅을 쓸어버리는 여호와의 큰 날(습 1:14-18). 겸손한 남은 자의 회복, "너로 말미암아 기쁨을 이기지 못하시며"(습 3:17)'],
+  '예레미야':['아나돗(베냐민 땅) 출신. 예루살렘, 뒤에 애굽','살구나무 가지와 끓는 가마 환상(렘 1장). 토기장이와 옹기(렘 18-19장). 바벨론 포로 70년(렘 25:11). 새 언약(렘 31:31-34)'],
+  '훌다':['예루살렘 둘째 구역','발견된 율법책의 재앙이 유다에 임하겠으나, 겸비한 요시야는 평안히 묘실에 들어가리라(왕하 22:15-20)'],
+  '하박국':['남유다 (출신 미상)','"어느 때까지니이까" 불의에 대한 질문과 갈대아(바벨론)를 들어 쓰시는 응답(합 1장). "의인은 그의 믿음으로 말미암아 살리라"(합 2:4)'],
+  '다니엘':['바벨론 왕궁, 메대·바사 시대의 수산','큰 신상 꿈 해석(단 2장). 네 짐승과 인자 같은 이(단 7장). 숫양과 숫염소(단 8장). 70이레(단 9장). 마지막 때와 부활(단 12장)'],
+  '에스겔':['바벨론 그발 강가의 델아빕 (포로민 가운데)','네 생물과 바퀴, 하나님의 영광(겔 1장). 성전을 떠나는 영광(겔 10장). 마른 뼈 골짜기(겔 37장). 새 성전과 생명수 강(겔 40-47장)'],
+  '학개':['예루살렘. 포로에서 돌아온 공동체','"이 성전이 황폐하였거늘 너희가 판벽한 집에 거주하는 것이 옳으냐"(학 1:4). 나중 영광이 이전 영광보다 크리라(학 2:9)'],
+  '스가랴':['예루살렘. 포로에서 돌아온 공동체','밤의 여덟 환상: 화석류 사이의 말 탄 자, 측량줄, 금 등잔대와 두 감람나무 등(슥 1-6장). 나귀 타고 오시는 겸손한 왕(슥 9:9)'],
+  '말라기':['예루살렘. 포로 귀환 후','흠 있는 제물과 십일조에 대한 책망(말 1, 3장). "내 사자를 보내리니" 길 예비자(말 3:1). 선지자 엘리야를 보내리라(말 4:5)']
+};
+/* ===== 연대표 칸 꾹 누르면 펼쳐 보기: 잘린 내용까지 다 보이게, 바깥을 누르거나 − 로 원래대로 ===== */
+(()=>{ let t=null, fired=false, sx=0, sy=0;
+  const close=()=>{ document.querySelectorAll('#kings .tl-fobox').forEach(x=>x.remove()); document.querySelectorAll('#kings .tl-b.tl-open').forEach(b=>{ b.classList.remove('tl-open'); b.style.cssText=b.dataset.css||b.style.cssText; b.querySelector('.tl-x')?.remove(); }); requestAnimationFrame(()=>typeof tlFit==='function'&&tlFit()); };
+  const open=b=>{ close(); b.dataset.css=b.style.cssText;
+    const r=b.getBoundingClientRect(), pr=b.offsetParent.getBoundingClientRect(), w=Math.min(pr.width*0.8, 300), right = r.left+r.width/2 > pr.left+pr.width/2;
+    b.classList.add('tl-open');
+    b.style.width=w+'px'; b.style.left = right ? (r.right-pr.left-w)+'px' : (r.left-pr.left)+'px'; b.style.height='auto'; b.style.minHeight=r.height+'px';
+    b.querySelectorAll('.tl-d,small').forEach(x=>{ x.style.display=''; x.style.webkitLineClamp=''; x.style.maxHeight=''; });
+    b.insertAdjacentHTML('beforeend','<span class="tl-x" role="button" aria-label="접기">−</span>');
+    if(navigator.vibrate) try{ navigator.vibrate(15); }catch(e){}
+  };
+  const openFo=b=>{ close(); const pr=b.offsetParent, r=b.getBoundingClientRect(), prr=pr.getBoundingClientRect(), n=b.dataset.nation, p=P[b.dataset.person];
+    const w=Math.min(prr.width*0.86, 320), left=Math.max(4, Math.min(prr.width-w-4, r.left-prr.left+r.width/2-w/2));
+    pr.insertAdjacentHTML('beforeend',`<div class="tl-b tl-open tl-fobox" style="top:${Math.max(b.offsetTop, Math.min(b.offsetTop+b.offsetHeight-40, sy-prr.top-30))}px;left:${left}px;width:${w}px;--nc:${NATION[n]}"><b>${esc(b.dataset.person)}</b><small>${esc(n)} 왕 · BC ${esc(b.dataset.yrs)}</small>
+      <span class="tl-d">${esc(p?p.desc:'')}</span><span class="tl-nat"><em>${esc(n)}</em> ${esc(NATION_INFO[n]||'')}</span><span class="tl-x" role="button" aria-label="접기">−</span></div>`);
+    if(navigator.vibrate) try{ navigator.vibrate(15); }catch(e){}
+  };
+  const openPr=b=>{ close(); const pr=b.offsetParent, r=b.getBoundingClientRect(), prr=pr.getBoundingClientRect(), nm=nameParts(b.dataset.person)[0], info=PROPHET_INFO[nm]||[];
+    const w=Math.min(prr.width*0.86, 330), left=Math.max(4, Math.min(prr.width-w-4, r.left-prr.left+r.width/2-w/2));
+    pr.insertAdjacentHTML('beforeend',`<div class="tl-b tl-open tl-fobox tl-prbox" style="top:${Math.max(b.offsetTop, Math.min(b.offsetTop+b.offsetHeight-40, sy-prr.top-30))}px;left:${left}px;width:${w}px;--nc:var(--c-p)"><b>${esc(nm)}</b><small>선지자 · BC ${esc(b.dataset.yrs||'')}</small>
+      <span class="tl-d">${esc(b.dataset.desc||'')}</span>
+      ${info[0]?`<span class="tl-nat"><em>활동 지역</em>${esc(info[0])}</span>`:''}
+      <span class="tl-x" role="button" aria-label="접기">−</span></div>`);
+    if(navigator.vibrate) try{ navigator.vibrate(15); }catch(e){}
+  };
+  document.addEventListener('pointerdown',e=>{ const b=e.target.closest('#kings .tl-b'); if(!b || b.classList.contains('tl-fobox') || e.target.closest('.tl-x')) return;
+    fired=false; sx=e.clientX; sy=e.clientY; clearTimeout(t); t=setTimeout(()=>{ fired=true; b.classList.contains('fo') ? openFo(b) : b.classList.contains('pr') ? openPr(b) : open(b); },500); });
+  const cancel=e=>{ if(t && e.type==='pointermove' && Math.hypot(e.clientX-sx,e.clientY-sy)<8) return; clearTimeout(t); t=null; };
+  ['pointerup','pointercancel','pointermove'].forEach(ev=>document.addEventListener(ev,cancel,{passive:true}));
+  document.addEventListener('contextmenu',e=>{ if(e.target.closest('#kings .tl-b')) e.preventDefault(); });
+  document.addEventListener('click',e=>{
+    if(fired && e.target.closest('#kings .tl-b')){ e.preventDefault(); e.stopPropagation(); fired=false; return; }
+    if(e.target.closest('.tl-x')){ e.preventDefault(); e.stopPropagation(); close(); return; }
+    if(document.querySelector('#kings .tl-open') && !e.target.closest('.tl-open')){ close(); if(e.target.closest('#kings .tl-b')){ e.preventDefault(); e.stopPropagation(); } }
+  },true);
+})();
 renderBooks(); renderPerson(); renderGraph(); renderKings();
 renderQuick(); try{ history.replaceState(navState(),''); }catch(e){}
 if(location.hash==='#kings') setTab('kings');
