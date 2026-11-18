@@ -136,6 +136,11 @@ main>section,.panel{min-width:0}
 .mapcap b{color:var(--ink)}
 .arow b small{font-weight:400;color:var(--muted);font-size:calc(12px * var(--fz,1))}
 .btnrow{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.relsec{margin-top:18px;padding-top:4px;border-top:1.5px dashed var(--line)}
+.relhd{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.relhd{margin:18px 0 8px}.relhd .sub{margin:0}
+.relhd .btn{padding:7px 16px;font-size:calc(14px * var(--fz,1));margin:0}
+#person .sub{font-size:calc(17px * var(--fz,1));letter-spacing:.2px}
 .btn{border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:8px;padding:8px 14px;font-size:calc(14px * var(--fz,1));font-weight:500}
 .btn.ghost{background:transparent;color:var(--accent)}
 
@@ -256,6 +261,51 @@ main>section,.panel{min-width:0}
 @media (prefers-reduced-motion: no-preference){
   .card,.rel,.chip{transition:border-color .15s}
 }
+.k-tip{display:block;margin-top:6px;font-weight:700;color:var(--accent)}
+.pf-tut{display:block;width:100%;margin-top:14px;font:inherit;font-size:calc(14px * var(--fz,1));padding:10px 0;border-radius:999px;border:1.4px solid color-mix(in srgb,var(--ink) 25%,transparent);background:transparent;color:var(--ink);cursor:pointer}
+#tutBox{position:fixed;inset:0;z-index:9998;overflow:hidden;word-break:keep-all;overflow-wrap:break-word;line-break:strict;font-size:calc(15px * max(var(--fz,1),1.32));color:#fff8ec}
+#tutBox .tut-svg{position:absolute;inset:0;pointer-events:none}
+#tutBox .tdim{fill:rgba(30,21,14,.87)}
+body:not(.gothic) #tutBox{font-size:calc(17.5px * max(var(--fz,1),1.32))}
+body:not(.gothic) #tutBox .tut-t{letter-spacing:.3px}
+#tutBox .to{fill:none;stroke:rgba(255,248,236,.9);stroke-width:2;stroke-dasharray:6 5}
+#tutBox .ta,#tutBox .th{fill:none;stroke:#fff8ec;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#tutBox .ta{stroke-dasharray:4 4}
+#tutBox .tut-t small{font-weight:400;opacity:.85;font-size:.85em}
+#tutBox .tut-t{position:absolute;margin:0;line-height:1.45;font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,.4);max-width:72vw}
+#tutBox .tut-card{position:absolute;left:50%;transform:translateX(-50%);width:min(400px,95vw);text-align:center;line-height:1.55}
+#tutBox .tut-card.tut-solid{background:rgba(30,21,14,.94);border-radius:18px;padding:14px 16px;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+#tutBox .tut-card.tut-in-r{animation:tutInR .28s ease-out}#tutBox .tut-card.tut-in-l{animation:tutInL .28s ease-out}
+@keyframes tutInR{from{opacity:0;margin-left:60px}to{opacity:1;margin-left:0}}@keyframes tutInL{from{opacity:0;margin-left:-60px}to{opacity:1;margin-left:0}}
+#tutBox .tut-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+#tutBox .tut-skip{font:inherit;font-size:.9em;background:none;border:0;color:#fff8ec;opacity:.75;padding:10px 6px;min-width:72px;text-align:left;cursor:pointer}
+#tutBox .tut-dots{display:flex;gap:6px}#tutBox .tut-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,248,236,.35)}#tutBox .tut-dots i.on{background:#ffd98a}
+#tutBox .tut-card b{color:#9fc6f2;letter-spacing:.5px;display:block;font-size:1.3em;margin:6px 0 6px}
+#tutBox .tut-card p{margin:0 0 10px}
+#tutBox .tut-card .tl{display:block;text-wrap:balance;margin-bottom:.12em}
+#tutBox .tut-card em{white-space:nowrap;font-style:normal;color:#ffd98a;font-weight:700}
+#tutBox .tut-sub{opacity:.82;font-size:.88em}
+#tutBox .tut-ok{min-width:96px;font:inherit;font-weight:700;padding:11px 28px;border-radius:999px;border:0;background:var(--accent);color:#fff;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.2)}
+#tutBox .tut-hand{position:absolute;width:0;height:0;pointer-events:none;z-index:2}
+#tutBox .tut-hand svg{position:absolute;left:-18px;top:-6px;fill:#fff8ec;stroke:#2b1d12;filter:drop-shadow(0 2px 4px rgba(0,0,0,.55));transform-origin:18px 6px}
+#tutBox .tut-ring{position:absolute;left:-15px;top:-15px;width:30px;height:30px;border-radius:50%;border:2.5px solid #ffd98a;box-sizing:border-box}
+#tutBox .g-tap svg{animation:tutTap 1.4s ease-in-out infinite}
+#tutBox .g-tap .tut-ring{animation:tutP 1.4s ease-out infinite}
+#tutBox .g-press svg{animation:tutPress 2.2s ease-in-out infinite}
+#tutBox .g-press .tut-ring{background:rgba(255,217,138,.28);animation:tutHold 2.2s ease-in-out infinite}
+#tutBox .g-drag svg{animation:tutDrag 2s ease-in-out infinite}
+#tutBox .g-drag .tut-ring{animation:tutDragR 2s ease-in-out infinite}
+#tutBox .tut-arr{position:absolute;color:#ffd98a;font-size:16px;line-height:18px;opacity:.9;pointer-events:none}
+#tutBox .tut-ud{position:absolute;left:-44px;top:-6px;color:#ffd98a;font-size:13px;line-height:1.05;text-align:center;opacity:.9}
+@keyframes tutTap{0%,100%{transform:translate(4px,6px)}35%,55%{transform:translate(0,0) scale(.92)}}
+@keyframes tutP{0%,30%{transform:scale(.4);opacity:0}35%{opacity:1}100%{transform:scale(1.9);opacity:0}}
+@keyframes tutPress{0%{transform:translate(4px,8px)}15%,78%{transform:translate(0,0) scale(.9)}92%,100%{transform:translate(4px,8px)}}
+@keyframes tutHold{0%,15%{transform:scale(.3);opacity:0}20%{opacity:1}75%{transform:scale(2.1);opacity:.9}85%,100%{transform:scale(2.3);opacity:0}}
+@keyframes tutDrag{0%,100%{transform:translateY(0) scale(.92)}50%{transform:translateY(70px) scale(.92)}}
+@keyframes tutDragR{0%,100%{transform:translateY(0)}50%{transform:translateY(70px)}}
+body.tut-on main{padding-bottom:65vh}
+#tutBox .tut-nav{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));width:min(360px,90vw);margin:0;z-index:3}
+@media (prefers-reduced-motion:reduce){#tutBox .tut-ring,#tutBox .tut-hand svg{animation:none!important}}
 </style>
 <style id="theme-hand">
 /* ===== 손그림 테마: 크림 종이, 벽돌빛 빨강, 하늘색, 마롱둥근고딕 ===== */
@@ -701,7 +751,7 @@ button.qlab{border:0;background:none;padding:0;color:var(--sky-deep);font-size:c
   <section id="v-kings" class="view" aria-label="이스라엘과 유다의 왕">
     <div class="kintro">
       <h2>이스라엘과 유다의 왕</h2>
-      <p>왼쪽은 북이스라엘, 오른쪽은 남유다입니다. 시간축 보기에서는 왕의 재위와 선지자의 활동 기간이 실제 길이에 맞춰 그려져, 어느 선지자가 어느 왕들의 시대에 걸쳐 있었는지 한눈에 보입니다. 카드 보기에서는 선지자를 보라색 카드로 표시했습니다. 왕 카드 위 색은 성경의 평가이고, 아래 칩은 그 왕의 이야기에 등장하는 인물입니다. 이름을 누르면 인물 상세와 관계도로 이동합니다.</p>
+      <p>왼쪽은 북이스라엘, 오른쪽은 남유다입니다. 시간축 보기에서는 왕의 재위와 선지자의 활동 기간이 실제 길이에 맞춰 그려져, 어느 선지자가 어느 왕들의 시대에 걸쳐 있었는지 한눈에 보입니다. 카드 보기에서는 선지자를 보라색 카드로 표시했습니다. 왕 카드 위 색은 성경의 평가이고, 아래 칩은 그 왕의 이야기에 등장하는 인물입니다. 이름을 누르면 인물 상세와 관계도로 이동합니다. <b class="k-tip">시간축의 왕·선지자·주변국 칸을 꾹 누르면 칸이 커지며 소개글 전체와 공동통치 기간이 모두 보입니다.</b></p>
       <div class="gmode" id="kview"><button data-kv="time" aria-pressed="true">시간축으로 보기</button><button data-kv="card" aria-pressed="false">카드로 보기</button></div>
       <div class="gmode" id="klayer"><button data-kl="k" aria-pressed="false">왕만</button><button data-kl="kp" aria-pressed="false">왕과 선지자</button><button data-kl="kpf" aria-pressed="true">왕·선지자·주변국</button></div>
       <div class="legend"><span><span class="pill g">정직</span>여호와 보시기에 정직</span><span><span class="pill b">악</span>여호와 보시기에 악</span><span><span class="pill m">엇갈림</span>처음과 끝이 다름</span><span><span class="pill n">평가 없음</span></span><span><span class="pill p">선지자</span>활동 시기</span></div>
@@ -1877,10 +1927,10 @@ function renderPerson(){
     ${(()=>{ const pi=(typeof PROPHET_INFO!=='undefined') && PROPHET_INFO[p.id]; if(!pi||!pi[1]) return '';
       const items=pi[1].split(/(?<=\))[.,]\s+/).map(t=>t.replace(/\.$/,''));
       return `<div class="sub" style="margin-top:4px">받은 환상·예언</div><ol class="deeds prophecy">${items.map(t=>{ const m=t.match(/^(.*?)\s*(\(([^()]*)\))?$/); return `<li>${esc(m[1])}${m[3]?` <cite>${esc(m[3])}</cite>`:''}</li>`; }).join('')}</ol>`; })()}
-    <div class="btnrow only-narrow"><button class="btn" data-go="graph">관계도로 보기</button></div>
     <div class="sub">등장·언급 성경 ${p.books.length}권</div>
     <div class="chips">${p.books.map(b=>`<button class="chip" data-book="${b}" title="${bookName(b)}">${bookName(b)}</button>`).join('')}</div>
-    <div class="sub">관계 ${p.rel.length}명</div>
+    <div class="relsec">
+    <div class="relhd"><div class="sub">관계 ${p.rel.length}명</div><button class="btn only-narrow" data-go="graph">관계도로 보기</button></div>
     ${p.rel.length ? `<div class="vsum"><span class="vp">호감이 있는 관계 <b>${p.rel.filter(r=>overall(r)==='+').length}</b></span><span class="vm">반감이 있는 관계 <b>${p.rel.filter(r=>overall(r)==='-').length}</b></span><span class="vz">중립 <b>${p.rel.filter(r=>overall(r)==='0').length}</b></span></div>` : ''}
     ${groups.length ? groups.map(([c,rs])=>`
       <div class="relgroup"><h3><span class="dot" style="background:var(--c-${c})"></span>${CATS[c]} <span style="color:var(--muted);font-weight:400">${rs.length}</span></h3>
@@ -1888,6 +1938,7 @@ function renderPerson(){
       : '<p class="empty">정리된 관계가 아직 없습니다.</p>'}
     <div class="sub">다른 인물과의 연결 찾기</div>
     <div class="pathfind"><input type="search" placeholder="인물 이름 (예: 다윗, 예수)" autocomplete="off"><div class="pf-sug"></div></div><div class="pf-out"></div>
+    </div>
   `;
   // 지도마다 '크게 보기' 버튼
   document.querySelectorAll('#person .mapbox svg').forEach(sv=>{ const w=document.createElement('div'); w.className='mapwrap'; sv.replaceWith(w); w.appendChild(sv);
@@ -3482,6 +3533,7 @@ document.body.insertAdjacentHTML('beforeend',`<div id="prefSheet" class="vsheet"
   <div class="pf-lab">화면 켜두기</div>
   <div class="pf-seg"><button type="button" data-pf-wake="0">끄기</button><button type="button" data-pf-wake="1">켜두기</button></div>
   <p class="pf-wmsg vs-tip" hidden></p>
+  <button type="button" class="pf-tut">이 화면 사용법 다시 보기</button>
   <p class="vs-tip" style="margin-top:10px">이 기기에 저장되어 다음에 열 때도 그대로예요. 화면 켜두기는 이 페이지를 보고 있는 동안만 적용돼요.</p></div></div>`);
 document.addEventListener('click',e=>{
   if(e.target.closest('#prefBtn')){ document.getElementById('prefSheet').hidden=false; applyPrefs(false); return; }
@@ -3492,6 +3544,140 @@ document.addEventListener('click',e=>{
   if(f||z){ if(f) PREF.font=f.dataset.pfFont; if(z) PREF.size=+z.dataset.pfSize; try{ localStorage.setItem(PREF_KEY, JSON.stringify(PREF)); }catch(err){} applyPrefs(true); }
 });
 applyPrefs(false);
+/* ===== 사용법 안내(코치 마크): 탭마다 처음 들어갈 때 한 번, 여러 쪽으로 넘겨 보기 ===== */
+const TUT_KEY='chesed-atlas-tut2', TUT_VER='2026-11-18'; // 새 기능을 안내할 때 이 값을 바꾸면 다시 한 번씩 뜸
+const HAND_ICON='<svg viewBox="0 0 48 48" width="42" height="42" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 26V10a3 3 0 0 1 6 0v10a3 3 0 0 1 6 0v2a3 3 0 0 1 6 0v2a3 3 0 0 1 6 0v8c0 8-5 14-13 14h-2c-5 0-8-2-11-6l-6-8a3 3 0 0 1 4.5-4L18 30z"/><path d="M24 20v5M30 22v4M36 24v4" fill="none"/></svg>';
+const TUTS={ // t: 밝게 보일 곳, tap: 손가락이 누를 곳, g: 손짓(tap 누르기 · press 꾹 누르기 · drag 위아래로 끌기)
+  books:[
+    {t:['.search','.tabs'], extra:['#prefBtn'], tap:'#q', h:'둘러보기', p:'검색창에서 인물 이름으로 찾을 수 있어요.\n다른 번역 이름(예: 여호아스)도 찾을 수 있어요.\n아래 네 개의 탭으로\n<em>성경별 · 인물 · 관계도 · 왕 연대표</em>를\n오가며 보세요.', side:'톱니바퀴: 글꼴 · 글자 크기 설정'},
+    {t:['#seg','#bookchips'], tap:'#bookchips button:nth-child(2)', h:'성경별로 보기', p:'구약 · 신약을 고르고 책 이름을 누르면,\n그 책에 나오는 인물이 아래에 카드로 나와요.'},
+    {t:['#cards .card'], tap:'#cards .card', h:'인물 카드', p:'인물 카드를 누르면\n그 인물의 <em>자세한 소개</em>와\n이동 경로, 관계가 나와요.'},
+    {t:['#quick'], need:'#quick .qchip', tap:'#quick .qchip', g:'press', h:'최근 본 인물 · 즐겨찾기', p:'본 인물이 여기에 쌓여요.\n인물을 <em>꾹 누르면</em> 지울 수 있고,\n편집으로 한꺼번에 정리하거나\n접어 둘 수 있어요.'}
+  ],
+  person:[
+    {t:['#person .phead'], tap:'#person .favbtn', h:'인물 소개', p:'이름 옆 <em>★</em>를 누르면 즐겨찾기에 담겨요.\n아래로 내리면 다른 이름,\n주요 행적, 등장하는 성경이 이어져요.'},
+    {t:['#person .mapwrap'], who:'아브라함', tap:'#person .mapwrap .mz-open', h:'이동 경로 지도', p:'인물이 다닌 길을 지도로 보여 줘요.\n<em>크게 보기</em>를 누르면\n손가락으로 확대하고 옮겨 볼 수 있어요.'},
+    {t:['#person .relhd','#person .vsum','#person .relgroup'], pin:'bottom', tap:'#person .relhd .btn', h:'관계', p:'이 인물과 이어진 사람들이\n가족 · 친척 같은 분류별로 모여 있어요.\n관계 카드를 누르면 그 인물로 넘어가고,\n<em>관계도로 보기</em>를 누르면 그림으로 볼 수 있어요.'},
+    {t:['#person .pathfind'], tap:'#person .pathfind input', h:'다른 인물과의 연결 찾기', p:'다른 인물 이름을 넣으면\n두 사람이 어떤 관계로 이어지는지\n단계별로 보여 줘요.'}
+  ],
+  graph:[
+    {t:['#gwrap'], tap:'#graph .gnode:not(:first-of-type)', h:'관계도', p:'가운데 인물과 이어진 사람들이에요.\n주변 인물을 누르면 그 사람 중심으로 바뀌어요.\n<em>두 손가락</em>으로 확대 · 축소할 수 있어요.'},
+    {t:['#gmode','#gfilter'], tap:'#gmode button:nth-child(2)', h:'색과 분류 바꾸기', p:'호불호 또는 관계 종류로 색을 바꿔 보고,\n분류 버튼으로 가족 · 친척 같은 관계만\n골라 볼 수 있어요.'},
+    {t:['.gz-big'], tap:'.gz-big', h:'크게 보기', p:'관계도를 화면 가득 크게 띄워서\n손가락으로 확대 · 이동하며 볼 수 있어요.'}
+  ],
+  kings:[
+    {t:['#kview','#klayer'], tap:'#klayer button:nth-child(2)', h:'왕 연대표', p:'시간축 · 카드로 보기를 바꾸고,\n왕만 · 선지자 · 주변국까지\n보일 것을 고를 수 있어요.'},
+    {t:['#kings .tl-b[data-person="히스기야"]'], tap:'#kings .tl-b[data-person="히스기야"]', g:'press', place:'left', h:'꾹 눌러 보세요', p:'왕 · 선지자 · 주변국 칸을 <em>꾹 누르면</em>\n칸이 커지며 <em>소개글 전체</em>와\n<em>공동통치 기간</em>이 모두 보여요.\n그냥 누르면 인물 소개로 가요.'},
+    {t:['.tl-scrub','.tl-grip'], extra:['#scrubFind'], tap:'.tl-grip', g:'drag', h:'성경 본문 막대', p:'막대 버튼을 잡고 <em>위아래로 끌면</em>\n그 시대에 해당하는 성경 본문이 나와요.\n돋보기를 누르면 책 · 장 · 절을 골라\n그 시대로 바로 갈 수 있어요.'}
+  ]
+};
+function tutSeen(){ try{ const o=JSON.parse(localStorage.getItem(TUT_KEY)||'{}'); return o.v===TUT_VER?o:{v:TUT_VER}; }catch(e){ return {v:TUT_VER}; } }
+function tutMark(tab){ const o=tutSeen(); o[tab]=1; try{ localStorage.setItem(TUT_KEY,JSON.stringify(o)); }catch(e){} }
+function tutMaybe(tab){ if(wide() || !TUTS[tab] || tutSeen()[tab] || document.getElementById('tutBox')) return; setTimeout(()=>{ if(state.tab===tab && !document.getElementById('tutBox')) tutShow(tab); },600); }
+function tutShow(tab){
+  document.getElementById('tutBox')?.remove();
+  const vis=sel=>{ const e=document.querySelector(sel); return e && e.offsetParent!==null && e.getBoundingClientRect().height>0 ? e : null; };
+  // 성경별 · 인물 · 관계도 안내는 아담 화면을 예시로 보여 줌 (닫으면 보던 화면으로 돌아감)
+  let restore=null;
+  if(['books','person','graph'].includes(tab) && P['아담']){
+    restore={id:state.id, book:state.book, testament:state.testament, y:window.scrollY};
+    state.id='아담'; if(tab==='books'){ state.book='창'; state.testament='구'; }
+    renderPerson(); renderGraph(); renderBooks(); if(tab!=='books') window.scrollTo(0,0);
+  }
+  const pages=TUTS[tab].filter(pg=>pg.who || pg.t.some(vis) && (!pg.need || document.querySelector(pg.need)));
+  if(!pages.length){ if(restore){ state.id=restore.id; state.book=restore.book; state.testament=restore.testament; renderPerson(); renderGraph(); renderBooks(); } return; }
+  const w=document.createElement('div'); w.id='tutBox'; w.setAttribute('role','dialog'); w.setAttribute('aria-label','사용법 안내');
+  document.body.appendChild(w); document.body.classList.add('tut-on');
+  let i=0, anim='', mode='';
+  const draw=()=>{
+    const pg=pages[i], vw=window.innerWidth, vh=window.innerHeight;
+    const rs=pg.t.map(vis).filter(Boolean).map(e=>e.getBoundingClientRect());
+    const u={l:Math.min(...rs.map(r=>r.left)), t:Math.min(...rs.map(r=>r.top)), r:Math.max(...rs.map(r=>r.right)), b:Math.max(...rs.map(r=>r.bottom))};
+    const P=6, holes=[{x:Math.max(4,u.l-P), y:u.t-P, w:Math.min(vw-8,u.r-u.l+P*2), h:u.b-u.t+P*2, r:14}];
+    (pg.extra||[]).map(vis).filter(Boolean).forEach(e=>{ const r=e.getBoundingClientRect(); holes.push({x:r.left-4,y:r.top-4,w:r.width+8,h:r.height+8,r:999}); });
+    holes.forEach(h=>h.r=Math.min(h.r,h.h/2,h.w/2));
+    if(pg.pin==='bottom'){ const lim=vh-86-6; if(holes[0].y+holes[0].h>lim) holes[0].h=Math.max(40, lim-holes[0].y); }
+    const H=holes[0]; let below = mode ? mode==='below' : (vh-(H.y+H.h)) >= H.y;
+    let svg=`<defs><mask id="tutM"><rect width="${vw}" height="${vh}" fill="#fff"/>${holes.map(h=>`<rect x="${h.x}" y="${h.y}" width="${h.w}" height="${h.h}" rx="${h.r}" fill="#000"/>`).join('')}</mask></defs><rect class="tdim" width="${vw}" height="${vh}" mask="url(#tutM)"/>`+holes.map(h=>`<rect class="to" x="${h.x}" y="${h.y}" width="${h.w}" height="${h.h}" rx="${h.r}"/>`).join('');
+    let side='';
+    if(pg.side && holes[1]){ const g=holes[1], gy=g.y+g.h/2; side=`<p class="tut-t" style="right:${vw-g.x+12}px;top:${gy-12}px;text-align:right;white-space:nowrap">${pg.side}</p>`; }
+    const NAVH=86; // 아래 고정 버튼줄 자리
+    const pos = below ? `top:${H.y+H.h+16}px` : (pg.pin==='bottom' && mode ? `bottom:${vh-H.y+Math.max(16,(H.y-16-(w.querySelector('.tut-card')||{offsetHeight:0}).offsetHeight)/2)}px` : `bottom:${vh-H.y+16}px`);
+    // 손가락: 실제로 누를 버튼 한가운데에
+    let hand='';
+    const te=pg.tap && vis(pg.tap);
+    if(te){ const r=te.getBoundingClientRect(); let hx=r.left+r.width/2, hy=r.top+r.height/2;
+      if(te.classList.contains('tl-b')) hy=r.top+Math.min(r.height/2, 60);
+      if(pg.g==='drag') hand+=`<span class="tut-arr" style="left:${hx-44}px;top:${H.y-30}px">▲</span><span class="tut-arr" style="left:${hx-44}px;top:${H.y+H.h+12}px">▼</span>`;
+      hand+=`<div class="tut-hand g-${pg.g||'tap'}" style="left:${hx}px;top:${hy}px" aria-hidden="true"><span class="tut-ring"></span>${HAND_ICON}</div>`; }
+    const last=i===pages.length-1;
+    const svgHtml=`<svg class="tut-svg" width="${vw}" height="${vh}" aria-hidden="true">${svg}</svg>${side}${hand}`;
+    if(w.dataset.pg===String(i) && w.querySelector('.tut-card')){ // 같은 쪽: 구멍과 카드 위치만 갱신 (애니메이션 끊기지 않게)
+      w.querySelectorAll('.tut-svg,.tut-t,.tut-hand').forEach(x=>x.remove()); w.insertAdjacentHTML('afterbegin',svgHtml);
+      const c=w.querySelector('.tut-card'); c.classList.remove('tut-solid'); c.style.cssText=pos;
+    } else { w.dataset.pg=i;
+    w.innerHTML=svgHtml+`
+      <div class="tut-card${anim}" style="${pos}"><b>${pg.h}</b><p>${pg.p.split('\n').map(t=>`<span class="tl">${t}</span>`).join('')}</p></div>
+        <div class="tut-nav"><button type="button" class="tut-skip">${last?'':'건너뛰기'}</button><span class="tut-dots">${pages.map((_,k)=>`<i${k===i?' class="on"':''}></i>`).join('')}</span><button type="button" class="tut-ok">${last?'확인했어요':'다음'}</button></div>`; anim=''; }
+    w.querySelector('.tut-nav .tut-skip').textContent = i===pages.length-1?'':'건너뛰기';
+    const c=w.querySelector('.tut-card');
+    if(pg.place==='left'){ // 대상 칸 왼쪽 옆, 칸 높이 가운데에
+      c.style.cssText=`left:4px;right:auto;transform:none;width:${Math.max(180,H.x-8)}px;top:0px`;
+      const ch=c.offsetHeight; c.style.top=Math.max(8, Math.min(H.y+H.h/2-ch/2, vh-NAVH-ch))+'px'; return; }
+    const cr=c.getBoundingClientRect();
+    // 쪽마다 한 번: 안내 글이 들어갈 자리를 정하고(대상 아래 또는 위), 대상 칸을 그에 맞게 스크롤로 옮김
+    // 대상은 위에 붙은 머리말(검색·탭)에 가려지지 않게 그 아래에만 둠
+    if(!mode){
+      const inHead = pg.t.map(vis).filter(Boolean).every(e=>e.closest('header'));
+      const need=cr.height+16, hb=document.querySelector('header.top').getBoundingClientRect().bottom, lim=vh-NAVH;
+      if(inHead){ mode = (vh-(H.y+H.h)) >= H.y ? 'below':'above'; }
+      else if(pg.pin==='bottom'){ // 대상을 화면 아래쪽 버튼줄 바로 위까지 내리고, 안내 글은 위쪽에
+        mode='above'; const e0=pg.t.map(vis).find(Boolean), full=pg.t.map(vis).filter(Boolean).map(e=>e.getBoundingClientRect()), top0=Math.min(...full.map(r=>r.top))-6, bot0=Math.max(...full.map(r=>r.bottom))+6;
+        const want=Math.max(hb+6, Math.min(lim-6-(bot0-top0), lim-6-(bot0-top0)));
+        const sh=top0-Math.max(want, 8+need);
+        if(Math.abs(sh)>2){ window.scrollBy({top:sh, behavior:'instant'}); requestAnimationFrame(draw); return; }
+      }
+      else {
+        const yA=hb+6, yB=Math.max(hb+6, 8+need);
+        let want;
+        if(yA+H.h+need<=lim){ mode='below'; want=yA; }
+        else { mode='above'; want=yB; }
+        const sh=H.y-want;
+        if(Math.abs(sh)>2){ window.scrollBy({top:sh, behavior:'instant'}); requestAnimationFrame(draw); return; }
+      }
+      if(mode!==(below?'below':'above')){ requestAnimationFrame(draw); return; }
+    }
+    // 그래도 넘치면 화면 안으로 끌어들임
+    if(cr.top<8 || cr.bottom>vh-NAVH){ c.style.bottom='auto'; c.style.top=Math.max(8, Math.min(cr.top, vh-NAVH-cr.height))+'px'; }
+  };
+  // 고정된 머리말(검색·탭) 아래로 대상이 오게 스크롤하고, 스크롤이 움직이면 구멍 위치를 다시 그림
+  const go=(dir)=>{ mode='';
+    if(restore){ const want=pages[i].who||'아담'; if(P[want] && state.id!==want){ state.id=want; renderPerson(); renderGraph(); } } // 이동 경로 쪽만 아브라함을 예시로
+    anim=dir?(dir>0?' tut-in-r':' tut-in-l'):''; const pg=pages[i], e=pg.t.map(vis).find(Boolean);
+    if(e && !e.closest('header')){ const hb=document.querySelector('header.top').getBoundingClientRect().bottom, r=e.getBoundingClientRect();
+      if(r.top<hb+12 || r.bottom>window.innerHeight-130) window.scrollTo({top:window.scrollY + r.top - hb - 28, behavior:'instant'}); }
+    draw(); requestAnimationFrame(draw); setTimeout(draw,250);
+};
+  let raf=0; const onScroll=()=>{ if(!raf) raf=requestAnimationFrame(()=>{ raf=0; draw(); }); };
+  const close=()=>{ if(restore){ state.id=restore.id; state.book=restore.book; state.testament=restore.testament; renderPerson(); renderGraph(); renderBooks(); } w.remove(); document.body.classList.remove('tut-on'); window.removeEventListener('resize',draw); window.removeEventListener('scroll',onScroll); tutMark(tab); };
+  window.addEventListener('resize',draw); window.addEventListener('scroll',onScroll,{passive:true});
+  const step=d=>{ const n=i+d; if(n<0) return; if(n>=pages.length) return close(); i=n; go(d); };
+  w.addEventListener('click',e=>{
+    if(e.target.closest('.tut-skip')) return close();
+    if(e.target.closest('.tut-ok')) step(1);
+  });
+  // 좌우로 밀어 쪽 넘기기
+  let sx=null, sy=null;
+  w.addEventListener('touchstart',e=>{ const t=e.touches[0]; sx=t.clientX; sy=t.clientY; },{passive:true});
+  w.addEventListener('touchmove',e=>{ e.preventDefault(); },{passive:false});
+  w.addEventListener('touchend',e=>{ if(sx==null) return; const t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy; sx=null;
+    if(Math.abs(dx)>45 && Math.abs(dx)>Math.abs(dy)*1.3) step(dx<0?1:-1); },{passive:true});
+  if(tab==='books') window.scrollTo(0,0);
+  go();
+}
+document.addEventListener('click',e=>{ if(e.target.closest('.pf-tut')){ document.getElementById('prefSheet').hidden=true; tutShow(state.tab); } });
+{ const _setTab=setTab; setTab=function(t){ const r=_setTab.apply(this,arguments); tutMaybe(t); return r; }; }
+setTimeout(()=>tutMaybe(state.tab),700);
 /* 화면 켜두기 (Wake Lock): 지원하는 브라우저(안드로이드 크롬, 최신 사파리)에서 이 페이지를 보는 동안 화면이 꺼지지 않게 */
 let WAKE=null;
 async function wakeSync(fromClick){
