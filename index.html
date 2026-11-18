@@ -3584,8 +3584,13 @@ function tutShow(tab){
     state.id='아담'; if(tab==='books'){ state.book='창'; state.testament='구'; }
     renderPerson(); renderGraph(); renderBooks(); if(tab!=='books') window.scrollTo(0,0);
   }
+  // 성경별 안내: 최근 본 인물 줄은 예시(아담·하와·가인·아벨·셋)로 잠깐 바꿔 보여 줌 (저장하지 않고, 닫으면 원래대로)
+  let quickBak=null;
+  if(tab==='books'){ quickBak={fav:QUICK.fav, recent:QUICK.recent, fold:QUICK.fold, ed:QEDIT.row};
+    QUICK.fav=[]; QUICK.recent=['아담','하와','가인','아벨','셋'].filter(id=>P[id]); QUICK.fold={}; QEDIT.row=null; renderQuick(); }
+  const quickBack=()=>{ if(quickBak){ QUICK.fav=quickBak.fav; QUICK.recent=quickBak.recent; QUICK.fold=quickBak.fold; QEDIT.row=quickBak.ed; quickBak=null; renderQuick(); } };
   const pages=TUTS[tab].filter(pg=>pg.who || pg.t.some(vis) && (!pg.need || document.querySelector(pg.need)));
-  if(!pages.length){ if(restore){ state.id=restore.id; state.book=restore.book; state.testament=restore.testament; renderPerson(); renderGraph(); renderBooks(); } return; }
+  if(!pages.length){ quickBack(); if(restore){ state.id=restore.id; state.book=restore.book; state.testament=restore.testament; renderPerson(); renderGraph(); renderBooks(); } return; }
   const w=document.createElement('div'); w.id='tutBox'; w.setAttribute('role','dialog'); w.setAttribute('aria-label','사용법 안내');
   document.body.appendChild(w); document.body.classList.add('tut-on');
   let i=0, anim='', mode='';
@@ -3659,7 +3664,7 @@ function tutShow(tab){
     draw(); requestAnimationFrame(draw); setTimeout(draw,250);
 };
   let raf=0; const onScroll=()=>{ if(!raf) raf=requestAnimationFrame(()=>{ raf=0; draw(); }); };
-  const close=()=>{ if(restore){ state.id=restore.id; state.book=restore.book; state.testament=restore.testament; renderPerson(); renderGraph(); renderBooks(); } w.remove(); document.body.classList.remove('tut-on'); window.removeEventListener('resize',draw); window.removeEventListener('scroll',onScroll); tutMark(tab); };
+  const close=()=>{ quickBack(); if(restore){ state.id=restore.id; state.book=restore.book; state.testament=restore.testament; renderPerson(); renderGraph(); renderBooks(); } w.remove(); document.body.classList.remove('tut-on'); window.removeEventListener('resize',draw); window.removeEventListener('scroll',onScroll); tutMark(tab); };
   window.addEventListener('resize',draw); window.addEventListener('scroll',onScroll,{passive:true});
   const step=d=>{ const n=i+d; if(n<0) return; if(n>=pages.length) return close(); i=n; go(d); };
   w.addEventListener('click',e=>{

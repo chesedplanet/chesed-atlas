@@ -1,7 +1,7 @@
 /* Chesed Atlas 오프라인 지원
    페이지(index.html)는 인터넷이 되면 항상 새로 받아서 최신 버전을 보여주고, 안 되면 저장해 둔 것을 보여줌.
    글꼴·아이콘은 저장해 둔 것을 먼저 씀. 버전을 올리면 예전 저장본은 지움. */
-const VERSION = 'atlas-v16';
+const VERSION = 'atlas-v17';
 const CORE = ['./', './index.html', './manifest.webmanifest', './fonts/marong-round-medium.woff',
   './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png', './icons/favicon-32.png'];
 self.addEventListener('install', e => {
